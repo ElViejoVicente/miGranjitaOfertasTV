@@ -90,7 +90,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Negocio\Negocio.csproj">
+    <ProjectReference Include="Negocio\Negocio.csproj">
       <Project>{1aadff5f-1fc1-43cd-9576-9659c7d8d031}</Project>
       <Name>Negocio</Name>
     </ProjectReference>

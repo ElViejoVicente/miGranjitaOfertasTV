@@ -9,7 +9,7 @@ namespace Negocio
     public class AlmacenInfo
     {
 
-        public Almacen Almacen { get; set; }
+        public string  Almacen { get; set; }
         public decimal Disponible { get; set; }
         public decimal PrecioUnitario { get; set; }
         public decimal CostoReposicion { get; set; }
