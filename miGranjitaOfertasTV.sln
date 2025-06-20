@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "miGranjitaOfertasTV", "miGr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Negocio", "Negocio\Negocio.csproj", "{1AADFF5F-1FC1-43CD-9576-9659C7D8D031}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CargaDatosAPI", "CargaDatosAPI\CargaDatosAPI.csproj", "{4F65F7E7-7775-4D19-8968-A4AF70F4FD5D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,10 @@ Global
 		{1AADFF5F-1FC1-43CD-9576-9659C7D8D031}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AADFF5F-1FC1-43CD-9576-9659C7D8D031}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AADFF5F-1FC1-43CD-9576-9659C7D8D031}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F65F7E7-7775-4D19-8968-A4AF70F4FD5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F65F7E7-7775-4D19-8968-A4AF70F4FD5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F65F7E7-7775-4D19-8968-A4AF70F4FD5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F65F7E7-7775-4D19-8968-A4AF70F4FD5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
