@@ -57,7 +57,7 @@ namespace miGranjitaOfertasTV
                     // var productos = DatosApi.ObtenerProductosGranjita();
 
 
-                    ListaProductos = datosProductos.ObtenerProductosVenta("Mi Granjita");
+                    ListaProductos = datosProductos.ObtenerProductosVenta("MiGranjita");   //Corralito
 
 
 
