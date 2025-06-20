@@ -64,7 +64,7 @@
     .titulo-encabezado {
       font-size: 24px;
       font-weight: bold;
-      color: #333;
+      color: transparent;
       text-align: center;
       flex-grow: 1;
       margin: 0 20px;
