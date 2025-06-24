@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="miGranjitaOfertasTV.index" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="corralito.aspx.cs" Inherits="miGranjitaOfertasTV.corralito" %>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -115,12 +115,12 @@
       margin-top: 10px;
     }
 
-    /* Tabla de productos - Centrada */
+    /* Tabla de productos - Centrada - MODIFICADO PARA PANTALLAS GRANDES */
     .tabla-productos-container {
       margin: 40px auto;
       width: 95%;
-      max-width: 1200px;
-      height: 600px;
+      max-width: 1400px; /* Aumentado de 1200px */
+      height: 800px; /* Aumentado de 600px */
       overflow: hidden;
       position: fixed;
       top: 50%;
@@ -157,21 +157,21 @@
     .tabla-productos h2 {
       color: #d32f2f;
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 30px; /* Aumentado de 20px */
       font-family: 'Georgia', serif;
-      padding-top: 20px;
-      font-size: 32px;
+      padding-top: 30px; /* Aumentado de 20px */
+      font-size: 42px; /* Aumentado de 32px */
     }
 
     .tabla-productos table {
-      width: 100%;
+      width: 95%; /* Cambiado de 100% para mejor espaciado */
       border-collapse: collapse;
       margin: 0 auto;
-      font-size: 18px;
+      font-size: 24px; /* Aumentado de 18px */
     }
     
     .tabla-productos th, .tabla-productos td {
-      padding: 15px 20px;
+      padding: 20px 30px; /* Aumentado de 15px 20px */
       text-align: left;
       border-bottom: 1px solid #ddd;
     }
@@ -180,14 +180,14 @@
       background-color: #4CAF50;
       color: white;
       font-weight: bold;
-      font-size: 23px;
+      font-size: 28px; /* Aumentado de 23px */
     }
 
     .tabla-productos tr.categoria-title {
       background-color: #e8f5e9;
       font-weight: bold;
       color: #2e7d32;
-      font-size: 25px;
+      font-size: 30px; /* Aumentado de 25px */
     }
 
     .tabla-productos tr:nth-child(even):not(.categoria-title) {
@@ -296,15 +296,34 @@
       background: #d32f2f;
       color: white;
       border: none;
-      width: 30px;
-      height: 30px;
+      width: 40px; /* Aumentado de 30px */
+      height: 40px; /* Aumentado de 30px */
       border-radius: 50%;
-      font-size: 18px;
+      font-size: 24px; /* Aumentado de 18px */
       cursor: pointer;
       z-index: 102;
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    /* Notificación de refresco */
+    .refresh-notification {
+      position: fixed;
+      bottom: 70px;
+      right: 20px;
+      background-color: rgba(76, 175, 80, 0.9);
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      font-size: 16px;
+    }
+
+    .refresh-notification.visible {
+      opacity: 1;
     }
 
     @media (max-width: 768px) {
@@ -363,11 +382,24 @@
       .tabla-productos table {
         display: block;
         overflow-x: auto;
+        font-size: 18px; /* Tamaño original para móviles */
       }
       
       .tabla-productos th, .tabla-productos td {
         padding: 10px 15px;
         font-size: 16px;
+      }
+
+      .tabla-productos h2 {
+        font-size: 28px;
+      }
+
+      .tabla-productos th {
+        font-size: 20px;
+      }
+
+      .tabla-productos tr.categoria-title {
+        font-size: 22px;
       }
     }
     </style>
@@ -388,10 +420,10 @@
     <div class="contenido">
        
         <!-- Logo en el centro -->
-        <img src="imagenes/migranjita2.png" alt="Logo Mi granjita" class="logo-centro">
+        <img src="imagenes/corralito.png" alt="Logo Mi granjita" class="logo-centro">
         
         <!-- Nombre de la empresa -->
-        <div class="nombre-empresa">Productos Cárnicos Mi granjita</div>
+        <div class="nombre-empresa">Productos Cárnicos El Corralito</div>
         
         <!-- Eslogan -->
         <div class="eslogan">"Creando familias sanas"</div>
@@ -405,6 +437,9 @@
         <div class="footer-text">&copy; 2023 Productos Cárnicos Mi granjita. Todos los derechos reservados.</div>
         <div class="footer-date" id="fechaFooter"></div>
     </footer>
+
+    <!-- Notificación de refresco -->
+    <div class="refresh-notification" id="refreshNotification">La página se actualizará en 10 segundos</div>
 
     <!-- Franja verde con firma -->
     <div class="franja-firma" id="franjaFirma">
@@ -535,6 +570,8 @@
         let alturaTabla = 0;
         let alturaContenedor = 0;
         let animacionTabla;
+        let refreshInterval;
+        let refreshTimeout;
 
         // Función para iniciar la página
         function iniciarPagina() {
@@ -546,6 +583,28 @@
 
             // Mostrar tabla después de 5 segundos
             setTimeout(mostrarTabla, 5000);
+
+            // Configurar auto-refresco cada 10 segundos
+            configurarAutoRefresco();
+        }
+
+        // Función para configurar el auto-refresco
+        function configurarAutoRefresco() {
+            // Mostrar notificación 5 segundos antes del refresco
+            refreshInterval = setInterval(() => {
+                const notification = document.getElementById('refreshNotification');
+                notification.classList.add('visible');
+
+                // Ocultar notificación después de 5 segundos
+                setTimeout(() => {
+                    notification.classList.remove('visible');
+                }, 5000);
+
+                // Programar el refresco 5 segundos después de mostrar la notificación
+                refreshTimeout = setTimeout(() => {
+                    location.reload();
+                }, 10000);
+            }, 5000); // 5 segundos de intervalo (10 segundos total)
         }
 
         // Función para mostrar la tabla
@@ -654,6 +713,12 @@
                 franjaFirma.classList.remove('visible');
             }
         }
+
+        // Limpiar intervalos al cerrar la página
+        window.addEventListener('beforeunload', () => {
+            clearInterval(refreshInterval);
+            clearTimeout(refreshTimeout);
+        });
 
         // Cerrar tabla al hacer clic en el overlay
         document.getElementById('overlay').addEventListener('click', ocultarTabla);

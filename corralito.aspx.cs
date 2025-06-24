@@ -1,5 +1,4 @@
-﻿
-using Negocio.ORM;
+﻿using Negocio.ORM;
 using Negocio.ProductosCarnicos;
 using System;
 using System.Collections.Generic;
@@ -11,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace miGranjitaOfertasTV
 {
-    public partial class index : System.Web.UI.Page
+    public partial class corralito : System.Web.UI.Page
     {
 
 

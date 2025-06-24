@@ -11,7 +11,7 @@ namespace miGranjitaOfertasTV
 {
 
 
-    public partial class index
+    public partial class corralito
     {
     }
 }
