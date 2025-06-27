@@ -73,7 +73,7 @@ namespace CargaDatosAPI.BI
             {
                 using (var db = new SqlConnection(cnn))
                 {
-                    db.Execute(sql: "sp_CRUD_ProductosVenta_Insert", param: new
+                    db.Execute(sql: "sp_BorraTodosLosProductosVenta", param: new
                     {
                         nombreSucursal
 
@@ -184,7 +184,7 @@ namespace CargaDatosAPI.BI
                 // Aquí puedes procesar el resultado filtrado
                 resultadoFiltrado = resultadoAcumulado.Where(x => x.codigo.Length == 4 && x.codigo.StartsWith("9")).ToList();
 
-                return resultadoAcumulado;
+                return resultadoFiltrado;
 
             }
             catch (Exception ex)
@@ -265,7 +265,7 @@ namespace CargaDatosAPI.BI
                 // Aquí puedes procesar el resultado filtrado
                 resultadoFiltrado = resultadoAcumulado.Where(x => x.codigo.Length == 4 && x.codigo.StartsWith("9")).ToList();
 
-                return resultadoAcumulado;
+                return resultadoFiltrado;
 
             }
             catch (Exception ex)

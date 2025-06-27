@@ -29,7 +29,7 @@ namespace CargaDatosAPI
                 datosBi.FnlogApp("Consultoría-It");
                 datosBi.FnlogApp("Consulta los datos de productos de las sucursales  Mi granjita y Corralito por medio de API ..");
                 datosBi.FnlogApp("Creation Date: 2025-06-20..............................");
-                datosBi.FnlogApp("Last update Date: 2025-06-20...........................");
+                datosBi.FnlogApp("Last update Date: 2025-06-27...........................");
                 datosBi.FnlogApp("V1.0");
                 datosBi.FnlogApp("........................Start..........................");
 
@@ -76,7 +76,7 @@ namespace CargaDatosAPI
                             Descripcion = item.descripcion,
                             PrecioMenudeo =  Convert.ToDecimal( item.precio), 
                             PrecioMayoreo = Convert.ToDecimal(item.precio_neto),
-                            Moneda = item.moneda,
+                            Moneda =  item.moneda == null ? "" : item.moneda,
                             Unidad = item.unidad.nombre,
                             CondicionMayoreo = item.descripcion_ecommerce == null ? "" : item.descripcion_ecommerce
                         };
@@ -116,6 +116,8 @@ namespace CargaDatosAPI
 
 
 
+
+                datosBi.FnlogApp("Fin de la tarea");
 
 
 
