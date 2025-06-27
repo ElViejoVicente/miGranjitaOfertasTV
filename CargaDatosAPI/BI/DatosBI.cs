@@ -1,8 +1,13 @@
-﻿using Negocio.API;
+﻿using CargaDatosAPI.ORM;
+using Dapper;
+using Negocio.API;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -14,6 +19,8 @@ namespace CargaDatosAPI.BI
     public class DatosBI
     {
 
+        #region Propiedades
+
         protected String urlGranjita = ConfigurationManager.AppSettings["urlAPI.Granjita"];
         protected String KeyGranjita = ConfigurationManager.AppSettings["urlAPIKey.Granjita"];
 
@@ -21,6 +28,70 @@ namespace CargaDatosAPI.BI
         protected String keyCorralito = ConfigurationManager.AppSettings["urlAPIKey.Corralito"];
 
         protected int LimiteLlamadas = 100;
+
+        protected String cnn = ConfigurationManager.AppSettings["sqlConn.ConnectionString"];
+
+        #endregion
+
+
+        public Boolean AltaProductosVenta(ProductosVenta values)
+        {
+            try
+            {
+                using (var db = new SqlConnection(cnn))
+                {
+                    db.Execute(sql: "sp_CRUD_ProductosVenta_Insert", param: new
+                    {
+                        values.nomSucursal,
+                        values.idInterno ,
+                        values.CodProducto,
+                        values.Descripcion,
+                        values.PrecioMenudeo,
+                        values.PrecioMayoreo,
+                        values.Moneda,
+                        values.Unidad,
+                        values.CondicionMayoreo
+
+                    }, commandType: CommandType.StoredProcedure);
+                }
+
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error al ejecutar sp_CRUD_ProductosVenta_Insert, detalle: \n" + ex.Message, ex);
+            }
+        }
+
+
+
+        public Boolean BorrarTodosLosProductosVenta(string nombreSucursal)
+        {
+            try
+            {
+                using (var db = new SqlConnection(cnn))
+                {
+                    db.Execute(sql: "sp_CRUD_ProductosVenta_Insert", param: new
+                    {
+                        nombreSucursal
+
+                    }, commandType: CommandType.StoredProcedure);
+                }
+
+
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error al ejecutar sp_BorraTodosLosProductosVenta, detalle: \n" + ex.Message, ex);
+            }
+        }
+
+
 
 
 

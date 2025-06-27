@@ -17,6 +17,8 @@ namespace miGranjitaOfertasTV
 
         #region Propiedades
 
+        const string nombreSucursalCorralito = "Corralito";
+
         protected DatosProductosVenta datosProductos = new DatosProductosVenta();
 
 
@@ -25,17 +27,17 @@ namespace miGranjitaOfertasTV
             get
 
             {
-                List<ProductosVenta> sseListaProductosMiGranjita = new List<ProductosVenta>();
-                if (this.Session["sseListaProductosMiGranjita"] != null)
+                List<ProductosVenta> sseListaProductosCorralito = new List<ProductosVenta>();
+                if (this.Session["sseListaProductosCorralito"] != null)
                 {
-                    sseListaProductosMiGranjita = (List<ProductosVenta>)this.Session["sseListaProductosMiGranjita"];
+                    sseListaProductosCorralito = (List<ProductosVenta>)this.Session["sseListaProductosCorralito"];
                 }
 
-                return sseListaProductosMiGranjita;
+                return sseListaProductosCorralito;
             }
             set
             {
-                this.Session["sseListaProductosMiGranjita"] = value;
+                this.Session["sseListaProductosCorralito"] = value;
             }
 
         }
@@ -56,7 +58,7 @@ namespace miGranjitaOfertasTV
                     // var productos = DatosApi.ObtenerProductosGranjita();
 
 
-                    ListaProductos = datosProductos.ObtenerProductosVenta("MiGranjita");   //Corralito
+                    ListaProductos = datosProductos.ObtenerProductosVenta(nombreSucursalCorralito);   //Corralito
 
 
 

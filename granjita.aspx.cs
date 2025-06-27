@@ -17,6 +17,12 @@ namespace miGranjitaOfertasTV
 
         #region Propiedades
 
+
+        const string nombreSucursalGranjita = "MiGranjita";
+
+
+
+
         protected DatosProductosVenta datosProductos = new DatosProductosVenta();
 
 
@@ -56,7 +62,7 @@ namespace miGranjitaOfertasTV
                     // var productos = DatosApi.ObtenerProductosGranjita();
 
 
-                    ListaProductos = datosProductos.ObtenerProductosVenta("MiGranjita");   //Corralito
+                    ListaProductos = datosProductos.ObtenerProductosVenta(nombreSucursalGranjita);   //Corralito
 
 
 
