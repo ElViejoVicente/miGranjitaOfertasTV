@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos Cárnicos Mi granjita</title>
+    <link rel="stylesheet" href="https://cdn.devexpress.com/ASPxGridView.css" />
+    <script src="https://cdn.devexpress.com/ASPxGridView.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Bahnschrift:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Bahnschrift:wght@400;500;600&display=swap');
@@ -453,116 +455,14 @@
     <div class="overlay" id="overlay"></div>
 
     <!-- Tabla de productos - Centrada -->
-    <div class="tabla-productos-container" id="tablaProductosContainer">
-        <button class="cerrar-tabla" onclick="ocultarTabla()">×</button>
-        <div class="contenedor-tabla">
-            <div class="tabla-productos" id="tablaProductos">
-                <h2>Nuestros Productos</h2>
+ <section class="CLPageContent" id="maindiv">
 
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Producto</th>
-                            <th>Precio Menudeo</th>
-                            <th>Precio Mayoreo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Categoría Cerdo -->
-                        <tr class="categoria-title">
-                            <td colspan="3">Productos de Cerdo</td>
-                        </tr>
-                        <tr>
-                            <td>Jamón de Cerdo</td>
-                            <td>$120/kg</td>
-                            <td>$100/kg (50+ kg)</td>
-                        </tr>
-                        <tr>
-                            <td>Lomo Fino de Cerdo</td>
-                            <td>$150/kg</td>
-                            <td>$130/kg (30+ kg)</td>
-                        </tr>
-                        <tr>
-                            <td>Chuleta de Cerdo</td>
-                            <td>$130/kg</td>
-                            <td>$110/kg (35+ kg)</td>
-                        </tr>
-                        <tr>
-                            <td>Tocino</td>
-                            <td>$140/kg</td>
-                            <td>$120/kg (20+ kg)</td>
-                        </tr>
-                        <tr>
-                            <td>Pierna de Cerdo</td>
-                            <td>$125/kg</td>
-                            <td>$105/kg (25+ kg)</td>
-                        </tr>
-                        <tr>
-                            <td>Costilla de Cerdo</td>
-                            <td>$110/kg</td>
-                            <td>$90/kg (30+ kg)</td>
-                        </tr>
+     <dx:ASPxGridView ID="gvCorralito" ClientInstanceName="gvCorralito" runat="server" AutoGenerateColumns="False" Width="100%" KeyFieldName="Idcodigo"
+         OnDataBinding:="gvCorralito_DataBinding">
 
-                        <!-- Categoría Res -->
-                        <tr class="categoria-title">
-                            <td colspan="3">Productos de Res</td>
-                        </tr>
-                        <tr>
-                            <td>Costilla de Res</td>
-                            <td>$180/kg</td>
-                            <td>$150/kg (25+ kg)</td>
-                        </tr>
-                        <tr>
-                            <td>Hueso Carnudo de Res</td>
-                            <td>$80/kg</td>
-                            <td>$65/kg (40+ kg)</td>
-                        </tr>
-                        <tr>
-                            <td>Filete de Res</td>
-                            <td>$220/kg</td>
-                            <td>$190/kg (15+ kg)</td>
-                        </tr>
-                        <tr>
-                            <td>Chuleta de Res</td>
-                            <td>$200/kg</td>
-                            <td>$170/kg (20+ kg)</td>
-                        </tr>
-                        <tr>
-                            <td>Falda de Res</td>
-                            <td>$150/kg</td>
-                            <td>$130/kg (25+ kg)</td>
-                        </tr>
-
-                        <!-- Categoría Pollo -->
-                        <tr class="categoria-title">
-                            <td colspan="3">Productos de Pollo</td>
-                        </tr>
-                        <tr>
-                            <td>Pechuga de Pollo</td>
-                            <td>$90/kg</td>
-                            <td>$75/kg (40+ kg)</td>
-                        </tr>
-                        <tr>
-                            <td>Muslo de Pollo</td>
-                            <td>$70/kg</td>
-                            <td>$60/kg (30+ kg)</td>
-                        </tr>
-                        <tr>
-                            <td>Alas de Pollo</td>
-                            <td>$65/kg</td>
-                            <td>$55/kg (25+ kg)</td>
-                        </tr>
-                        <tr>
-                            <td>Pollo Entero</td>
-                            <td>$75/kg</td>
-                            <td>$65/kg (20+ kg)</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
+     </dx:ASPxGridView>
+    
+    
     <script>
         // Variables globales
         let tablaVisible = false;

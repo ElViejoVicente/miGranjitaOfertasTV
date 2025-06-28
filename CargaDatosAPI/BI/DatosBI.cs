@@ -203,8 +203,8 @@ namespace CargaDatosAPI.BI
             {
 
 
-                //var url = "https://pcg.admintotal.com/api/v2/productos/";
-                //var apiKey = "V3S2BQ7KR83NKW3Y47RSWEOOLNQMZ40JWEY";
+                //var url = "https://corralito.admintotal.com/api/v2/productos/";
+                //var apiKey = "D5QNWDH39NUGGRKCDR5VWEGXMMZMX3L77EM";
 
                 RootllamadoAPI resultado = new RootllamadoAPI();
 
@@ -271,7 +271,7 @@ namespace CargaDatosAPI.BI
             catch (Exception ex)
             {
 
-                throw new Exception("Fallo en la llamada a la API de Granjita , Detalle: " + ex.Message);
+                throw new Exception("Fallo en la llamada a la API de Corralito , Detalle: " + ex.Message);
             }
 
 

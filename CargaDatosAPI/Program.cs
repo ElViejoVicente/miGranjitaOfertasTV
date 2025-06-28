@@ -98,21 +98,62 @@ namespace CargaDatosAPI
 
                 // carga de datos de la API Corralito
 
+                datosBi.FnlogApp("Consultando la llamada a la API Corralito.");
 
 
-                //listaProductos = datosBi.ObtenerProductosCorralito();
-
-                //if (listaProductos.Count == 0)
-                //{
-                //    datosBi.FnlogApp("la API Corralito  No retorno Productos ! .");
+                listaProductos = datosBi.ObtenerProductosCorralito();
 
 
-                //}
-                //else
-                //{
-                //    datosBi.FnlogApp("la API Corralito: " + listaProductos.Count.ToString() + " Productos.");
+                if (listaProductos.Count == 0)
+                {
+                    datosBi.FnlogApp("la API Corralito No retorno Productos ! .");
 
-                //}
+
+                }
+                else
+                {
+                    datosBi.FnlogApp("la API Corralito retorno: " + listaProductos.Count.ToString() + " Productos.");
+
+
+                    // paso numero 1 limpiar los registros de la sucursal Corralito
+
+
+                    datosBi.FnlogApp("Intentando limpiar los productos de la sucursal Corralito en BASE datos");
+                    datosBi.BorrarTodosLosProductosVenta(nombreSucursalCorralito);
+
+
+
+
+                    // paso numero 2 guardar los productos en la base de datos
+                    datosBi.FnlogApp("Intentando guardar productos en BASE datos");
+
+
+                    foreach (var item in listaProductos)
+                    {
+
+                        ProductosVenta datoAlta = new ProductosVenta
+                        {
+                            nomSucursal = nombreSucursalCorralito,
+                            idInterno = item.id,
+                            CodProducto = item.codigo,
+                            Descripcion = item.descripcion,
+                            PrecioMenudeo = Convert.ToDecimal(item.precio),
+                            PrecioMayoreo = Convert.ToDecimal(item.precio_neto),
+                            Moneda = item.moneda == null ? "" : item.moneda,
+                            Unidad = item.unidad.nombre,
+                            CondicionMayoreo = item.descripcion_ecommerce == null ? "" : item.descripcion_ecommerce
+                        };
+
+
+
+
+                        datosBi.AltaProductosVenta(datoAlta);
+                    }
+
+
+                    datosBi.FnlogApp("Datos Cargados Correctamente.");
+
+                }
 
 
 
