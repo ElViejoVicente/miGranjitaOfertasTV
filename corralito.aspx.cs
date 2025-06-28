@@ -76,5 +76,10 @@ namespace miGranjitaOfertasTV
 
 
         }
+
+        protected void gvCorralito_DataBinding(object sender, EventArgs e)
+        {
+
+        }
     }
 }

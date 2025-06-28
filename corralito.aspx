@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="corralito.aspx.cs" Inherits="miGranjitaOfertasTV.corralito" %>
 
+<%@ Register assembly="DevExpress.Web.v24.2, Version=24.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -407,6 +409,7 @@
     </style>
 </head>
 <body onload="iniciarPagina()">
+    <form id="form1" runat="server">
     <!-- Efecto parallax para la imagen de fondo -->
     <div class="parallax-container">
         <div class="parallax-bg" id="parallaxBg"></div>
@@ -447,6 +450,7 @@
     <div class="franja-firma" id="franjaFirma">
         <div class="contenedor-firma">
             <!-- Reemplaza 'firma.png' con la ruta de tu imagen de firma -->
+
             <img src="imagenes/firma.png" alt="Firma de Mi granjita" class="imagen-firma">
         </div>
     </div>
@@ -457,10 +461,12 @@
     <!-- Tabla de productos - Centrada -->
  <section class="CLPageContent" id="maindiv">
 
-     <dx:ASPxGridView ID="gvCorralito" ClientInstanceName="gvCorralito" runat="server" AutoGenerateColumns="False" Width="100%" KeyFieldName="Idcodigo"
-         OnDataBinding:="gvCorralito_DataBinding">
+     <dx:ASPxGridView ID="gvCorralito" ClientInstanceName="gvCorralito" runat="server" AutoGenerateColumns="False" Width="100%" KeyFieldName=""
+         OnDataBinding="gvCorralito_DataBinding" >
 
      </dx:ASPxGridView>
+
+
     
     
     <script>
@@ -623,5 +629,7 @@
         // Cerrar tabla al hacer clic en el overlay
         document.getElementById('overlay').addEventListener('click', ocultarTabla);
     </script>
+     </section>
+    </form>
 </body>
 </html>
