@@ -1,5 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="granjita.aspx.cs" Inherits="miGranjitaOfertasTV.granjita" %>
 
+<%@ Register Assembly="DevExpress.Web.v24.2, Version=24.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -115,12 +118,12 @@
       margin-top: 10px;
     }
 
-    /* Tabla de productos - Centrada - MODIFICADO PARA PANTALLAS GRANDES */
-    .tabla-productos-container {
+    /* Contenedor personalizado para el grid */
+    .grid-container {
       margin: 40px auto;
       width: 95%;
-      max-width: 1400px; /* Aumentado de 1200px */
-      height: 800px; /* Aumentado de 600px */
+      max-width: 1400px;
+      height: 800px;
       overflow: hidden;
       position: fixed;
       top: 50%;
@@ -135,72 +138,59 @@
       transition: all 0.5s ease;
     }
     
-    .tabla-productos-container.visible {
+    .grid-container.visible {
       opacity: 1;
       visibility: visible;
       transform: translate(-50%, -50%) scale(1);
     }
     
-    .contenedor-tabla {
+    .contenedor-grid {
       width: 100%;
       height: 100%;
       position: relative;
       overflow: hidden;
     }
     
-    .tabla-productos {
+    .grid-scrollable {
       width: 100%;
       position: absolute;
       transition: transform 0.8s ease-out;
     }
 
-    .tabla-productos h2 {
-      color: #d32f2f;
-      text-align: center;
-      margin-bottom: 30px; /* Aumentado de 20px */
-      font-family: 'Georgia', serif;
-      padding-top: 30px; /* Aumentado de 20px */
-      font-size: 42px; /* Aumentado de 32px */
-    }
-
-    .tabla-productos table {
-      width: 95%; /* Cambiado de 100% para mejor espaciado */
+    /* Estilos personalizados para el ASPxGridView */
+    .dxgvTable {
+      width: 100% !important;
       border-collapse: collapse;
       margin: 0 auto;
-      font-size: 24px; /* Aumentado de 18px */
+      font-size: 24px;
     }
     
-    .tabla-productos th, .tabla-productos td {
-      padding: 20px 30px; /* Aumentado de 15px 20px */
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .tabla-productos th {
-      background-color: #4CAF50;
-      color: white;
+    .dxgvHeader {
+      background-color: #4CAF50 !important;
+      color: white !important;
       font-weight: bold;
-      font-size: 28px; /* Aumentado de 23px */
+      font-size: 28px !important;
     }
-
-    .tabla-productos tr.categoria-title {
-      background-color: #e8f5e9;
-      font-weight: bold;
-      color: #2e7d32;
-      font-size: 30px; /* Aumentado de 25px */
+    
+    .dxgvHeader td {
+      padding: 20px 30px !important;
     }
-
-    .tabla-productos tr:nth-child(even):not(.categoria-title) {
-      background-color: #f9f9f9;
+    
+    .dxgvDataRow {
+      font-size: 24px;
     }
-
-    .tabla-productos tr:hover:not(.categoria-title) {
-      background-color: #f1f1f1;
+    
+    .dxgvDataRow td {
+      padding: 20px 30px !important;
+      border-bottom: 1px solid #ddd !important;
     }
-
-    .tabla-productos td:last-child {
-      color: #4CAF50;
-      font-weight: bold;
+    
+    .dxgvDataRow:nth-child(even) {
+      background-color: #f9f9f9 !important;
+    }
+    
+    .dxgvDataRow:hover {
+      background-color: #f1f1f1 !important;
     }
 
     /* Footer - Fijo en la parte inferior */
@@ -264,11 +254,6 @@
       object-fit: contain;
     }
 
-    /* Espacio adicional para permitir scroll */
-    .espacio-scroll {
-      height: 300px;
-    }
-
     /* Overlay para cuando la tabla está visible */
     .overlay {
       position: fixed;
@@ -296,10 +281,10 @@
       background: #d32f2f;
       color: white;
       border: none;
-      width: 40px; /* Aumentado de 30px */
-      height: 40px; /* Aumentado de 30px */
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      font-size: 24px; /* Aumentado de 18px */
+      font-size: 24px;
       cursor: pointer;
       z-index: 102;
       display: flex;
@@ -368,43 +353,34 @@
         font-size: 20px;
       }
 
-      /* Tabla responsiva */
-      .tabla-productos-container {
+      /* Grid responsivo */
+      .grid-container {
         width: 95%;
         height: 80vh;
         transform: translate(-50%, -50%) scale(0.8);
       }
       
-      .tabla-productos-container.visible {
+      .grid-container.visible {
         transform: translate(-50%, -50%) scale(0.9);
       }
       
-      .tabla-productos table {
-        display: block;
-        overflow-x: auto;
-        font-size: 18px; /* Tamaño original para móviles */
+      .dxgvTable {
+        font-size: 18px;
       }
       
-      .tabla-productos th, .tabla-productos td {
-        padding: 10px 15px;
+      .dxgvHeader td, .dxgvDataRow td {
+        padding: 10px 15px !important;
         font-size: 16px;
       }
 
-      .tabla-productos h2 {
-        font-size: 28px;
-      }
-
-      .tabla-productos th {
-        font-size: 20px;
-      }
-
-      .tabla-productos tr.categoria-title {
-        font-size: 22px;
+      .dxgvHeader {
+        font-size: 20px !important;
       }
     }
     </style>
 </head>
 <body onload="iniciarPagina()">
+    <form id="form1" runat="server">
     <!-- Efecto parallax para la imagen de fondo -->
     <div class="parallax-container">
         <div class="parallax-bg" id="parallaxBg"></div>
@@ -423,7 +399,7 @@
         <img src="imagenes/migranjita2.png" alt="Logo Mi granjita" class="logo-centro">
         
         <!-- Nombre de la empresa -->
-        <div class="nombre-empresa">Productos Cárnicos Mi granjita</div>
+        <div class="nombre-empresa">Productos Cárnicos El Corralito</div>
         
         <!-- Eslogan -->
         <div class="eslogan">"Creando familias sanas"</div>
@@ -444,7 +420,6 @@
     <!-- Franja verde con firma -->
     <div class="franja-firma" id="franjaFirma">
         <div class="contenedor-firma">
-            <!-- Reemplaza 'firma.png' con la ruta de tu imagen de firma -->
             <img src="imagenes/firma.png" alt="Firma de Mi granjita" class="imagen-firma">
         </div>
     </div>
@@ -452,124 +427,52 @@
     <!-- Overlay para cuando la tabla está visible -->
     <div class="overlay" id="overlay"></div>
 
-    <!-- Tabla de productos - Centrada -->
-    <div class="tabla-productos-container" id="tablaProductosContainer">
-        <button class="cerrar-tabla" onclick="ocultarTabla()">×</button>
-        <div class="contenedor-tabla">
-            <div class="tabla-productos" id="tablaProductos">
-                <h2>Nuestros Productos</h2>
-
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Producto</th>
-                            <th>Precio Menudeo</th>
-                            <th>Precio Mayoreo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Categoría Cerdo -->
-                        <tr class="categoria-title">
-                            <td colspan="3">Productos de Cerdo</td>
-                        </tr>
-                        <tr>
-                            <td>Jamón de Cerdo</td>
-                            <td>$120/kg</td>
-                            <td>$100/kg (50+ kg)</td>
-                        </tr>
-                        <tr>
-                            <td>Lomo Fino de Cerdo</td>
-                            <td>$150/kg</td>
-                            <td>$130/kg (30+ kg)</td>
-                        </tr>
-                        <tr>
-                            <td>Chuleta de Cerdo</td>
-                            <td>$130/kg</td>
-                            <td>$110/kg (35+ kg)</td>
-                        </tr>
-                        <tr>
-                            <td>Tocino</td>
-                            <td>$140/kg</td>
-                            <td>$120/kg (20+ kg)</td>
-                        </tr>
-                        <tr>
-                            <td>Pierna de Cerdo</td>
-                            <td>$125/kg</td>
-                            <td>$105/kg (25+ kg)</td>
-                        </tr>
-                        <tr>
-                            <td>Costilla de Cerdo</td>
-                            <td>$110/kg</td>
-                            <td>$90/kg (30+ kg)</td>
-                        </tr>
-
-                        <!-- Categoría Res -->
-                        <tr class="categoria-title">
-                            <td colspan="3">Productos de Res</td>
-                        </tr>
-                        <tr>
-                            <td>Costilla de Res</td>
-                            <td>$180/kg</td>
-                            <td>$150/kg (25+ kg)</td>
-                        </tr>
-                        <tr>
-                            <td>Hueso Carnudo de Res</td>
-                            <td>$80/kg</td>
-                            <td>$65/kg (40+ kg)</td>
-                        </tr>
-                        <tr>
-                            <td>Filete de Res</td>
-                            <td>$220/kg</td>
-                            <td>$190/kg (15+ kg)</td>
-                        </tr>
-                        <tr>
-                            <td>Chuleta de Res</td>
-                            <td>$200/kg</td>
-                            <td>$170/kg (20+ kg)</td>
-                        </tr>
-                        <tr>
-                            <td>Falda de Res</td>
-                            <td>$150/kg</td>
-                            <td>$130/kg (25+ kg)</td>
-                        </tr>
-
-                        <!-- Categoría Pollo -->
-                        <tr class="categoria-title">
-                            <td colspan="3">Productos de Pollo</td>
-                        </tr>
-                        <tr>
-                            <td>Pechuga de Pollo</td>
-                            <td>$90/kg</td>
-                            <td>$75/kg (40+ kg)</td>
-                        </tr>
-                        <tr>
-                            <td>Muslo de Pollo</td>
-                            <td>$70/kg</td>
-                            <td>$60/kg (30+ kg)</td>
-                        </tr>
-                        <tr>
-                            <td>Alas de Pollo</td>
-                            <td>$65/kg</td>
-                            <td>$55/kg (25+ kg)</td>
-                        </tr>
-                        <tr>
-                            <td>Pollo Entero</td>
-                            <td>$75/kg</td>
-                            <td>$65/kg (20+ kg)</td>
-                        </tr>
-                    </tbody>
-                </table>
+    <!-- Contenedor personalizado para el grid -->
+    <div class="grid-container" id="gridContainer">
+        <button class="cerrar-tabla" onclick="ocultarGrid()">×</button>
+        <div class="contenedor-grid">
+            <div class="grid-scrollable" id="gridScrollable">
+                <!-- Aquí colocamos nuestro ASPxGridView -->
+                <dx:ASPxGridView ID="gvMiGranjita" ClientInstanceName="gvMiGranjita" runat="server"                  
+                    OnDataBinding="gvMiGranjita_DataBinding" EnableCallBacks="false">
+                    
+                    <SettingsPager Mode="ShowAllRecords" /> 
+                    <Settings ShowVerticalScrollBar="false" /> 
+                    <SettingsBehavior AllowSort="false" /> 
+                    
+                    <Styles>
+                        <Header Font-Bold="true" ForeColor="White" BackColor="#4CAF50" Font-Size="28px" />
+                        <Cell Font-Size="24px" />
+                        <AlternatingRow Enabled="True" BackColor="#F9F9F9" />
+                    </Styles>
+                    
+                    <Columns>
+                        <dx:GridViewDataTextColumn FieldName="nomSucursal" Caption="Sucursal" Width="200px" />
+                        <dx:GridViewDataTextColumn FieldName="idInterno" Caption="ID Interno" Width="150px" />
+                        <dx:GridViewDataTextColumn FieldName="CodProducto" Caption="Código" Width="150px" />
+                        <dx:GridViewDataTextColumn FieldName="Descripcion" Caption="Producto" Width="300px" />
+                        <dx:GridViewDataTextColumn FieldName="PrecioMenudeo" Caption="Precio Menudeo" Width="200px">
+                            <PropertiesTextEdit DisplayFormatString="{0:C}" />
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="PrecioMayoreo" Caption="Precio Mayoreo" Width="200px">
+                            <PropertiesTextEdit DisplayFormatString="{0:C}" />
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="Moneda" Caption="Moneda" Width="100px" />
+                        <dx:GridViewDataTextColumn FieldName="Unidad" Caption="Unidad" Width="100px" />
+                    </Columns>
+                </dx:ASPxGridView>
             </div>
         </div>
     </div>
+    </form>
 
     <script>
         // Variables globales
-        let tablaVisible = false;
-        let posicionTabla = 0;
-        let alturaTabla = 0;
+        let gridVisible = false;
+        let posicionGrid = 0;
+        let alturaGrid = 0;
         let alturaContenedor = 0;
-        let animacionTabla;
+        let animacionGrid;
         let refreshInterval;
         let refreshTimeout;
 
@@ -581,8 +484,8 @@
             // Configurar eventos
             window.addEventListener('scroll', manejarScroll);
 
-            // Mostrar tabla después de 5 segundos
-            setTimeout(mostrarTabla, 5000);
+            // Mostrar grid después de 5 segundos
+            setTimeout(mostrarGrid, 5000);
 
             // Configurar auto-refresco cada 10 segundos
             configurarAutoRefresco();
@@ -607,79 +510,79 @@
             }, 5000); // 5 segundos de intervalo (10 segundos total)
         }
 
-        // Función para mostrar la tabla
-        function mostrarTabla() {
-            if (!tablaVisible) {
-                const tablaContainer = document.getElementById('tablaProductosContainer');
+        // Función para mostrar el grid
+        function mostrarGrid() {
+            if (!gridVisible) {
+                const gridContainer = document.getElementById('gridContainer');
                 const overlay = document.getElementById('overlay');
-                const tabla = document.getElementById('tablaProductos');
-                const contenedor = document.querySelector('.contenedor-tabla');
+                const gridScrollable = document.getElementById('gridScrollable');
+                const contenedor = document.querySelector('.contenedor-grid');
 
-                tablaContainer.classList.add('visible');
+                gridContainer.classList.add('visible');
                 overlay.classList.add('visible');
-                tablaVisible = true;
+                gridVisible = true;
 
                 // Deshabilitar scroll del body
                 document.body.style.overflow = 'hidden';
 
-                // Configurar animación de la tabla
+                // Configurar animación del grid
                 alturaContenedor = contenedor.offsetHeight;
-                alturaTabla = tabla.offsetHeight;
+                alturaGrid = gridScrollable.offsetHeight;
 
                 // Iniciar animación
-                animarTabla();
+                animarGrid();
             }
         }
 
-        // Función para animar la tabla
-        function animarTabla() {
-            const tabla = document.getElementById('tablaProductos');
+        // Función para animar el grid
+        function animarGrid() {
+            const gridScrollable = document.getElementById('gridScrollable');
             const velocidad = 0.5; // píxeles por frame
             let reboteActivo = false;
 
             function animar() {
-                posicionTabla -= velocidad;
+                posicionGrid -= velocidad;
 
                 // Si hemos llegado al final, reiniciar con efecto de rebote
-                if (-posicionTabla >= alturaTabla - alturaContenedor) {
+                if (-posicionGrid >= alturaGrid - alturaContenedor) {
                     if (!reboteActivo) {
                         reboteActivo = true;
                         setTimeout(() => {
-                            posicionTabla = 0;
+                            posicionGrid = 0;
                             reboteActivo = false;
                         }, 1000);
                     }
                 }
 
-                tabla.style.transform = `translateY(${posicionTabla}px)`;
-                animacionTabla = requestAnimationFrame(animar);
+                gridScrollable.style.transform = `translateY(${posicionGrid}px)`;
+                animacionGrid = requestAnimationFrame(animar);
             }
 
             // Detener cualquier animación previa
-            cancelAnimationFrame(animacionTabla);
+            cancelAnimationFrame(animacionGrid);
 
             // Reiniciar posición
-            posicionTabla = 0;
-            tabla.style.transform = `translateY(${posicionTabla}px)`;
+            posicionGrid = 0;
+            gridScrollable.style.transform = `translateY(${posicionGrid}px)`;
 
             // Iniciar nueva animación
-            animacionTabla = requestAnimationFrame(animar);
+            animacionGrid = requestAnimationFrame(animar);
         }
 
-        // Función para ocultar la tabla
-        function ocultarTabla() {
-            const tablaContainer = document.getElementById('tablaProductosContainer');
+        // Función para ocultar el grid
+        function ocultarGrid() {
+            const gridContainer = document.getElementById('gridContainer');
             const overlay = document.getElementById('overlay');
 
-            tablaContainer.classList.remove('visible');
+            gridContainer.classList.remove('visible');
             overlay.classList.remove('visible');
-            tablaVisible = false;
+            gridVisible = false;
 
             // Habilitar scroll del body
             document.body.style.overflow = '';
 
             // Detener animación
-            cancelAnimationFrame(animacionTabla);
+            cancelAnimationFrame(animacionGrid);
         }
 
         // Función para actualizar la hora
@@ -720,8 +623,33 @@
             clearTimeout(refreshTimeout);
         });
 
-        // Cerrar tabla al hacer clic en el overlay
-        document.getElementById('overlay').addEventListener('click', ocultarTabla);
+        // Cerrar grid al hacer clic en el overlay
+        document.getElementById('overlay').addEventListener('click', ocultarGrid);
+
+        // Ajustar el grid cuando se cargan los datos
+        function onGridDataBound(s, e) {
+            // Esperar un momento para que el grid termine de renderizar
+            setTimeout(function () {
+                const gridElement = gvCorralito.GetMainElement();
+                const gridScrollable = document.getElementById('gridScrollable');
+
+                // Clonar el grid dentro de nuestro contenedor scrollable
+                gridScrollable.innerHTML = '';
+                gridScrollable.appendChild(gridElement);
+
+                // Aplicar estilos adicionales
+                gridElement.style.width = '100%';
+                gridElement.style.margin = '0 auto';
+
+                // Mostrar el grid
+                mostrarGrid();
+            }, 100);
+        }
+
+        // Asignar el evento de databound si el grid está definido
+        if (typeof gvMiGranjita !== 'undefined') {
+            gvMiGranjita.DataBound.AddHandler(onGridDataBound);
+        }
     </script>
 </body>
 </html>

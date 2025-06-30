@@ -1,4 +1,6 @@
-﻿using Negocio.ORM;
+﻿using CargaDatosAPI.BI;
+using DevExpress.Web;
+using Negocio.ORM;
 using Negocio.ProductosCarnicos;
 using System;
 using System.Collections.Generic;
@@ -13,8 +15,7 @@ namespace miGranjitaOfertasTV
     public partial class corralito : System.Web.UI.Page
     {
 
-
-
+        
         #region Propiedades
 
         const string nombreSucursalCorralito = "Corralito";
@@ -46,11 +47,11 @@ namespace miGranjitaOfertasTV
 
         #endregion
 
-
+       
 
 
         protected void Page_Load(object sender, EventArgs e)
-        {
+       {
             if (!IsPostBack)
             {
                 try
@@ -60,11 +61,8 @@ namespace miGranjitaOfertasTV
 
                     ListaProductos = datosProductos.ObtenerProductosVenta(nombreSucursalCorralito);   //Corralito
 
-
-
-
-
-
+                    gvCorralito.DataSource = ListaProductos;
+                    gvCorralito.DataBind();
                 }
                 catch (Exception ex)
                 {
@@ -73,13 +71,15 @@ namespace miGranjitaOfertasTV
                 }
             }
 
-
+    
 
         }
 
         protected void gvCorralito_DataBinding(object sender, EventArgs e)
         {
-
+           
+            gvCorralito.DataSource = ListaProductos;
         }
+
     }
 }

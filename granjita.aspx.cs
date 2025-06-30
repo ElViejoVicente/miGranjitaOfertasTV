@@ -62,11 +62,10 @@ namespace miGranjitaOfertasTV
                     // var productos = DatosApi.ObtenerProductosGranjita();
 
 
-                    ListaProductos = datosProductos.ObtenerProductosVenta(nombreSucursalGranjita);   //Corralito
+                    ListaProductos = datosProductos.ObtenerProductosVenta(nombreSucursalGranjita);   //Granjita
 
-
-
-
+                    gvMiGranjita.DataSource = ListaProductos;
+                    gvMiGranjita.DataBind();
 
 
                 }
@@ -78,6 +77,12 @@ namespace miGranjitaOfertasTV
             }
 
 
+
+        }
+
+        protected void gvMiGranjita_DataBinding(object sender, EventArgs e)
+        {
+            gvMiGranjita.DataSource = ListaProductos;
 
         }
     }

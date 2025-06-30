@@ -101,6 +101,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="CargaDatosAPI\CargaDatosAPI.csproj">
+      <Project>{4F65F7E7-7775-4D19-8968-A4AF70F4FD5D}</Project>
+      <Name>CargaDatosAPI</Name>
+    </ProjectReference>
     <ProjectReference Include="Negocio\Negocio.csproj">
       <Project>{1aadff5f-1fc1-43cd-9576-9659c7d8d031}</Project>
       <Name>Negocio</Name>

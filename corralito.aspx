@@ -7,9 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos Cárnicos Mi granjita</title>
-    <link rel="stylesheet" href="https://cdn.devexpress.com/ASPxGridView.css" />
-    <script src="https://cdn.devexpress.com/ASPxGridView.js"></script>
+    <title>Productos Cárnicos El Corralito</title>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Bahnschrift:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Bahnschrift:wght@400;500;600&display=swap');
@@ -119,12 +117,12 @@
       margin-top: 10px;
     }
 
-    /* Tabla de productos - Centrada - MODIFICADO PARA PANTALLAS GRANDES */
-    .tabla-productos-container {
+    /* Contenedor personalizado para el grid */
+    .grid-container {
       margin: 40px auto;
       width: 95%;
-      max-width: 1400px; /* Aumentado de 1200px */
-      height: 800px; /* Aumentado de 600px */
+      max-width: 1400px;
+      height: 800px;
       overflow: hidden;
       position: fixed;
       top: 50%;
@@ -139,72 +137,59 @@
       transition: all 0.5s ease;
     }
     
-    .tabla-productos-container.visible {
+    .grid-container.visible {
       opacity: 1;
       visibility: visible;
       transform: translate(-50%, -50%) scale(1);
     }
     
-    .contenedor-tabla {
+    .contenedor-grid {
       width: 100%;
       height: 100%;
       position: relative;
       overflow: hidden;
     }
     
-    .tabla-productos {
+    .grid-scrollable {
       width: 100%;
       position: absolute;
       transition: transform 0.8s ease-out;
     }
 
-    .tabla-productos h2 {
-      color: #d32f2f;
-      text-align: center;
-      margin-bottom: 30px; /* Aumentado de 20px */
-      font-family: 'Georgia', serif;
-      padding-top: 30px; /* Aumentado de 20px */
-      font-size: 42px; /* Aumentado de 32px */
-    }
-
-    .tabla-productos table {
-      width: 95%; /* Cambiado de 100% para mejor espaciado */
+    /* Estilos personalizados para el ASPxGridView */
+    .dxgvTable {
+      width: 100% !important;
       border-collapse: collapse;
       margin: 0 auto;
-      font-size: 24px; /* Aumentado de 18px */
+      font-size: 24px;
     }
     
-    .tabla-productos th, .tabla-productos td {
-      padding: 20px 30px; /* Aumentado de 15px 20px */
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .tabla-productos th {
-      background-color: #4CAF50;
-      color: white;
+    .dxgvHeader {
+      background-color: #4CAF50 !important;
+      color: white !important;
       font-weight: bold;
-      font-size: 28px; /* Aumentado de 23px */
+      font-size: 28px !important;
     }
-
-    .tabla-productos tr.categoria-title {
-      background-color: #e8f5e9;
-      font-weight: bold;
-      color: #2e7d32;
-      font-size: 30px; /* Aumentado de 25px */
+    
+    .dxgvHeader td {
+      padding: 20px 30px !important;
     }
-
-    .tabla-productos tr:nth-child(even):not(.categoria-title) {
-      background-color: #f9f9f9;
+    
+    .dxgvDataRow {
+      font-size: 24px;
     }
-
-    .tabla-productos tr:hover:not(.categoria-title) {
-      background-color: #f1f1f1;
+    
+    .dxgvDataRow td {
+      padding: 20px 30px !important;
+      border-bottom: 1px solid #ddd !important;
     }
-
-    .tabla-productos td:last-child {
-      color: #4CAF50;
-      font-weight: bold;
+    
+    .dxgvDataRow:nth-child(even) {
+      background-color: #f9f9f9 !important;
+    }
+    
+    .dxgvDataRow:hover {
+      background-color: #f1f1f1 !important;
     }
 
     /* Footer - Fijo en la parte inferior */
@@ -268,11 +253,6 @@
       object-fit: contain;
     }
 
-    /* Espacio adicional para permitir scroll */
-    .espacio-scroll {
-      height: 300px;
-    }
-
     /* Overlay para cuando la tabla está visible */
     .overlay {
       position: fixed;
@@ -300,10 +280,10 @@
       background: #d32f2f;
       color: white;
       border: none;
-      width: 40px; /* Aumentado de 30px */
-      height: 40px; /* Aumentado de 30px */
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      font-size: 24px; /* Aumentado de 18px */
+      font-size: 24px;
       cursor: pointer;
       z-index: 102;
       display: flex;
@@ -372,38 +352,28 @@
         font-size: 20px;
       }
 
-      /* Tabla responsiva */
-      .tabla-productos-container {
+      /* Grid responsivo */
+      .grid-container {
         width: 95%;
         height: 80vh;
         transform: translate(-50%, -50%) scale(0.8);
       }
       
-      .tabla-productos-container.visible {
+      .grid-container.visible {
         transform: translate(-50%, -50%) scale(0.9);
       }
       
-      .tabla-productos table {
-        display: block;
-        overflow-x: auto;
-        font-size: 18px; /* Tamaño original para móviles */
+      .dxgvTable {
+        font-size: 18px;
       }
       
-      .tabla-productos th, .tabla-productos td {
-        padding: 10px 15px;
+      .dxgvHeader td, .dxgvDataRow td {
+        padding: 10px 15px !important;
         font-size: 16px;
       }
 
-      .tabla-productos h2 {
-        font-size: 28px;
-      }
-
-      .tabla-productos th {
-        font-size: 20px;
-      }
-
-      .tabla-productos tr.categoria-title {
-        font-size: 22px;
+      .dxgvHeader {
+        font-size: 20px !important;
       }
     }
     </style>
@@ -417,7 +387,7 @@
 
     <!-- Franja blanca superior con logo y hora -->
     <div class="encabezado">
-        <h1 class="titulo-encabezado">Productos Cárnicos Mi granjita</h1>
+        <h1 class="titulo-encabezado">Productos Cárnicos El Corralito</h1>
         <div class="hora" id="hora"></div>
     </div>
 
@@ -425,7 +395,7 @@
     <div class="contenido">
        
         <!-- Logo en el centro -->
-        <img src="imagenes/corralito.png" alt="Logo Mi granjita" class="logo-centro">
+        <img src="imagenes/corralito.png" alt="Logo El Corralito" class="logo-centro">
         
         <!-- Nombre de la empresa -->
         <div class="nombre-empresa">Productos Cárnicos El Corralito</div>
@@ -439,7 +409,7 @@
 
     <!-- Footer fijo en la parte inferior -->
     <footer>
-        <div class="footer-text">&copy; 2023 Productos Cárnicos Mi granjita. Todos los derechos reservados.</div>
+        <div class="footer-text">&copy; 2023 Productos Cárnicos El Corralito. Todos los derechos reservados.</div>
         <div class="footer-date" id="fechaFooter"></div>
     </footer>
 
@@ -449,33 +419,59 @@
     <!-- Franja verde con firma -->
     <div class="franja-firma" id="franjaFirma">
         <div class="contenedor-firma">
-            <!-- Reemplaza 'firma.png' con la ruta de tu imagen de firma -->
-
-            <img src="imagenes/firma.png" alt="Firma de Mi granjita" class="imagen-firma">
+            <img src="imagenes/firma.png" alt="Firma de El Corralito" class="imagen-firma">
         </div>
     </div>
 
     <!-- Overlay para cuando la tabla está visible -->
     <div class="overlay" id="overlay"></div>
 
-    <!-- Tabla de productos - Centrada -->
- <section class="CLPageContent" id="maindiv">
+    <!-- Contenedor personalizado para el grid -->
+    <div class="grid-container" id="gridContainer">
+        <button class="cerrar-tabla" onclick="ocultarGrid()">×</button>
+        <div class="contenedor-grid">
+            <div class="grid-scrollable" id="gridScrollable">
+                <!-- Aquí colocamos nuestro ASPxGridView -->
+                <dx:ASPxGridView ID="gvCorralito" ClientInstanceName="gvCorralito" runat="server"                  
+                    OnDataBinding="gvCorralito_DataBinding" EnableCallBacks="false">
+                    
+                    <SettingsPager Mode="ShowAllRecords" /> 
+                    <Settings ShowVerticalScrollBar="false" /> 
+                    <SettingsBehavior AllowSort="false" /> 
+                    
+                    <Styles>
+                        <Header Font-Bold="true" ForeColor="White" BackColor="#4CAF50" Font-Size="28px" />
+                        <Cell Font-Size="24px" />
+                        <AlternatingRow Enabled="True" BackColor="#F9F9F9" />
+                    </Styles>
+                    
+                    <Columns>
+                        <dx:GridViewDataTextColumn FieldName="nomSucursal" Caption="Sucursal" Width="200px" />
+                        <dx:GridViewDataTextColumn FieldName="idInterno" Caption="ID Interno" Width="150px" />
+                        <dx:GridViewDataTextColumn FieldName="CodProducto" Caption="Código" Width="150px" />
+                        <dx:GridViewDataTextColumn FieldName="Descripcion" Caption="Producto" Width="300px" />
+                        <dx:GridViewDataTextColumn FieldName="PrecioMenudeo" Caption="Precio Menudeo" Width="200px">
+                            <PropertiesTextEdit DisplayFormatString="{0:C}" />
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="PrecioMayoreo" Caption="Precio Mayoreo" Width="200px">
+                            <PropertiesTextEdit DisplayFormatString="{0:C}" />
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn FieldName="Moneda" Caption="Moneda" Width="100px" />
+                        <dx:GridViewDataTextColumn FieldName="Unidad" Caption="Unidad" Width="100px" />
+                    </Columns>
+                </dx:ASPxGridView>
+            </div>
+        </div>
+    </div>
+    </form>
 
-     <dx:ASPxGridView ID="gvCorralito" ClientInstanceName="gvCorralito" runat="server" AutoGenerateColumns="False" Width="100%" KeyFieldName=""
-         OnDataBinding="gvCorralito_DataBinding" >
-
-     </dx:ASPxGridView>
-
-
-    
-    
     <script>
         // Variables globales
-        let tablaVisible = false;
-        let posicionTabla = 0;
-        let alturaTabla = 0;
+        let gridVisible = false;
+        let posicionGrid = 0;
+        let alturaGrid = 0;
         let alturaContenedor = 0;
-        let animacionTabla;
+        let animacionGrid;
         let refreshInterval;
         let refreshTimeout;
 
@@ -487,8 +483,8 @@
             // Configurar eventos
             window.addEventListener('scroll', manejarScroll);
 
-            // Mostrar tabla después de 5 segundos
-            setTimeout(mostrarTabla, 5000);
+            // Mostrar grid después de 5 segundos
+            setTimeout(mostrarGrid, 5000);
 
             // Configurar auto-refresco cada 10 segundos
             configurarAutoRefresco();
@@ -513,79 +509,79 @@
             }, 5000); // 5 segundos de intervalo (10 segundos total)
         }
 
-        // Función para mostrar la tabla
-        function mostrarTabla() {
-            if (!tablaVisible) {
-                const tablaContainer = document.getElementById('tablaProductosContainer');
+        // Función para mostrar el grid
+        function mostrarGrid() {
+            if (!gridVisible) {
+                const gridContainer = document.getElementById('gridContainer');
                 const overlay = document.getElementById('overlay');
-                const tabla = document.getElementById('tablaProductos');
-                const contenedor = document.querySelector('.contenedor-tabla');
+                const gridScrollable = document.getElementById('gridScrollable');
+                const contenedor = document.querySelector('.contenedor-grid');
 
-                tablaContainer.classList.add('visible');
+                gridContainer.classList.add('visible');
                 overlay.classList.add('visible');
-                tablaVisible = true;
+                gridVisible = true;
 
                 // Deshabilitar scroll del body
                 document.body.style.overflow = 'hidden';
 
-                // Configurar animación de la tabla
+                // Configurar animación del grid
                 alturaContenedor = contenedor.offsetHeight;
-                alturaTabla = tabla.offsetHeight;
+                alturaGrid = gridScrollable.offsetHeight;
 
                 // Iniciar animación
-                animarTabla();
+                animarGrid();
             }
         }
 
-        // Función para animar la tabla
-        function animarTabla() {
-            const tabla = document.getElementById('tablaProductos');
+        // Función para animar el grid
+        function animarGrid() {
+            const gridScrollable = document.getElementById('gridScrollable');
             const velocidad = 0.5; // píxeles por frame
             let reboteActivo = false;
 
             function animar() {
-                posicionTabla -= velocidad;
+                posicionGrid -= velocidad;
 
                 // Si hemos llegado al final, reiniciar con efecto de rebote
-                if (-posicionTabla >= alturaTabla - alturaContenedor) {
+                if (-posicionGrid >= alturaGrid - alturaContenedor) {
                     if (!reboteActivo) {
                         reboteActivo = true;
                         setTimeout(() => {
-                            posicionTabla = 0;
+                            posicionGrid = 0;
                             reboteActivo = false;
                         }, 1000);
                     }
                 }
 
-                tabla.style.transform = `translateY(${posicionTabla}px)`;
-                animacionTabla = requestAnimationFrame(animar);
+                gridScrollable.style.transform = `translateY(${posicionGrid}px)`;
+                animacionGrid = requestAnimationFrame(animar);
             }
 
             // Detener cualquier animación previa
-            cancelAnimationFrame(animacionTabla);
+            cancelAnimationFrame(animacionGrid);
 
             // Reiniciar posición
-            posicionTabla = 0;
-            tabla.style.transform = `translateY(${posicionTabla}px)`;
+            posicionGrid = 0;
+            gridScrollable.style.transform = `translateY(${posicionGrid}px)`;
 
             // Iniciar nueva animación
-            animacionTabla = requestAnimationFrame(animar);
+            animacionGrid = requestAnimationFrame(animar);
         }
 
-        // Función para ocultar la tabla
-        function ocultarTabla() {
-            const tablaContainer = document.getElementById('tablaProductosContainer');
+        // Función para ocultar el grid
+        function ocultarGrid() {
+            const gridContainer = document.getElementById('gridContainer');
             const overlay = document.getElementById('overlay');
 
-            tablaContainer.classList.remove('visible');
+            gridContainer.classList.remove('visible');
             overlay.classList.remove('visible');
-            tablaVisible = false;
+            gridVisible = false;
 
             // Habilitar scroll del body
             document.body.style.overflow = '';
 
             // Detener animación
-            cancelAnimationFrame(animacionTabla);
+            cancelAnimationFrame(animacionGrid);
         }
 
         // Función para actualizar la hora
@@ -626,10 +622,33 @@
             clearTimeout(refreshTimeout);
         });
 
-        // Cerrar tabla al hacer clic en el overlay
-        document.getElementById('overlay').addEventListener('click', ocultarTabla);
+        // Cerrar grid al hacer clic en el overlay
+        document.getElementById('overlay').addEventListener('click', ocultarGrid);
+
+        // Ajustar el grid cuando se cargan los datos
+        function onGridDataBound(s, e) {
+            // Esperar un momento para que el grid termine de renderizar
+            setTimeout(function () {
+                const gridElement = gvCorralito.GetMainElement();
+                const gridScrollable = document.getElementById('gridScrollable');
+
+                // Clonar el grid dentro de nuestro contenedor scrollable
+                gridScrollable.innerHTML = '';
+                gridScrollable.appendChild(gridElement);
+
+                // Aplicar estilos adicionales
+                gridElement.style.width = '100%';
+                gridElement.style.margin = '0 auto';
+
+                // Mostrar el grid
+                mostrarGrid();
+            }, 100);
+        }
+
+        // Asignar el evento de databound si el grid está definido
+        if (typeof gvCorralito !== 'undefined') {
+            gvCorralito.DataBound.AddHandler(onGridDataBound);
+        }
     </script>
-     </section>
-    </form>
 </body>
 </html>
