@@ -51,33 +51,31 @@ namespace miGranjitaOfertasTV
 
 
         protected void Page_Load(object sender, EventArgs e)
-       {
+        {
             if (!IsPostBack)
             {
                 try
                 {
-                    // var productos = DatosApi.ObtenerProductosGranjita();
+                    // Cargar datos
+                    ListaProductos = datosProductos.ObtenerProductosVenta(nombreSucursalCorralito);
 
-
-                    ListaProductos = datosProductos.ObtenerProductosVenta(nombreSucursalCorralito);   //Corralito
+                    // Vincular datos a ambos grids
+                    gvHeader.DataSource = ListaProductos;
+                    gvHeader.DataBind();
 
                     gvCorralito.DataSource = ListaProductos;
                     gvCorralito.DataBind();
                 }
                 catch (Exception ex)
                 {
-                    // Manejar el error, por ejemplo mostrar un mensaje al usuario
-                    // lblError.Text = "Error al cargar los productos: " + ex.Message;
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                        $"alert('Error al cargar productos: {ex.Message.Replace("'", "")}');", true);
                 }
             }
-
-    
-
         }
 
         protected void gvCorralito_DataBinding(object sender, EventArgs e)
         {
-           
             gvCorralito.DataSource = ListaProductos;
         }
 
