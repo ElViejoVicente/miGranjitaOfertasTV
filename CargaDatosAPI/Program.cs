@@ -55,6 +55,11 @@ namespace CargaDatosAPI
                     // paso numero 1 limpiar los registros de la sucursal Mi Granjita
 
 
+                  //  var test = listaProductos.Where(x => x.codigo == "9239").ToList();
+
+
+
+
                     datosBi.FnlogApp("Intentando limpiar los productos de la sucursal Mi Granjita en BASE datos");
                     datosBi.BorrarTodosLosProductosVenta(nombreSucursalGranjita);
 
@@ -70,13 +75,13 @@ namespace CargaDatosAPI
 
                         // validacion si existe almcen nombre 003 Calle 7
 
-                        if (item.info_almacenes.Exists(x=> x.almacen.nombre.Contains("Calle 7")))   // Validar a OJo que no existan variantes de Calle 7 
+                        if (item.info_almacenes.Exists(x => x.almacen.nombre.Contains("Calle 7")))   // Validar a OJo que no existan variantes de Calle 7 
                         {
 
 
                             var datAlmacen = item.info_almacenes.Where(x => x.almacen.nombre.Contains("Calle 7")).FirstOrDefault();
 
-                            if (datAlmacen== null)
+                            if (datAlmacen == null)
                             {
                                 datosBi.FnlogApp("No se encontraron datos correctos del almacen de donde tomar los montos.");
                                 continue;
@@ -85,12 +90,30 @@ namespace CargaDatosAPI
 
                             var promocionesDisp = datAlmacen.promociones.FirstOrDefault();
 
-                            if (promocionesDisp == null)
+                            decimal precioMayoreo = 0;
+                            decimal precioMenudeo = 0;
+                            string CondicionMayoreo = "";
+
+                            if (promocionesDisp != null)
                             {
-                                datosBi.FnlogApp("No se encontraron datos correctos de Promociones de donde tomar los montos.");
-                                continue;
+                                CondicionMayoreo = "Al comprar " + Math.Round(Convert.ToDecimal(promocionesDisp.cantidad), 2).ToString() + " " +
+                                (promocionesDisp.nombre_unidad == "Kilogramos" ? "Kg" : promocionesDisp.nombre_unidad) + " o más.";
+
+
+                                precioMayoreo = Convert.ToDecimal(promocionesDisp.precio_neto);
+
+                                //datosBi.FnlogApp("No se encontraron datos correctos de Promociones de donde tomar los montos.");
+                                //continue;
 
                             }
+                            else
+                            {
+                                datosBi.FnlogApp("No se encontraron datos de Promociones de donde tomar los montos.");
+                            }
+
+
+                            precioMenudeo = Convert.ToDecimal(datAlmacen.precio_neto);
+
 
 
                             ProductosVenta datoAlta = new ProductosVenta
@@ -99,12 +122,11 @@ namespace CargaDatosAPI
                                 idInterno = item.id,
                                 CodProducto = item.codigo,
                                 Descripcion = item.descripcion,
-                                PrecioMenudeo = Convert.ToDecimal(datAlmacen.precio_neto),
-                                PrecioMayoreo = Convert.ToDecimal(promocionesDisp.precio_neto),
+                                PrecioMenudeo = precioMenudeo,
+                                PrecioMayoreo = precioMayoreo,
                                 Moneda = item.moneda == null ? "" : item.moneda,
                                 Unidad = item.unidad.nombre == "Kilogramos" ? "Kg" : item.unidad.nombre,
-                                CondicionMayoreo = "Al comprar " + Math.Round(Convert.ToDecimal(promocionesDisp.cantidad), 2).ToString() + " " + 
-                                (promocionesDisp.nombre_unidad == "Kilogramos" ? "Kg" : promocionesDisp.nombre_unidad) + " o más."
+                                CondicionMayoreo = CondicionMayoreo
                             };
 
 
