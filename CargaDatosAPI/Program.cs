@@ -68,23 +68,54 @@ namespace CargaDatosAPI
                     foreach (var item in listaProductos)
                     {
 
-                        ProductosVenta datoAlta = new ProductosVenta
+                        // validacion si existe almcen nombre 003 Calle 7
+
+                        if (item.info_almacenes.Exists(x=> x.almacen.nombre.Contains("Calle 7")))   // Validar a OJo que no existan variantes de Calle 7 
                         {
-                            nomSucursal = nombreSucursalGranjita,
-                            idInterno = item.id ,
-                            CodProducto = item.codigo,
-                            Descripcion = item.descripcion,
-                            PrecioMenudeo =  Convert.ToDecimal( item.precio), 
-                            PrecioMayoreo = Convert.ToDecimal(item.precio_neto),
-                            Moneda =  item.moneda == null ? "" : item.moneda,
-                            Unidad = item.unidad.nombre,
-                            CondicionMayoreo = item.descripcion_ecommerce == null ? "" : item.descripcion_ecommerce
-                        };
+
+
+                            var datAlmacen = item.info_almacenes.Where(x => x.almacen.nombre.Contains("Calle 7")).FirstOrDefault();
+
+                            if (datAlmacen== null)
+                            {
+                                datosBi.FnlogApp("No se encontraron datos correctos del almacen de donde tomar los montos.");
+                                continue;
+                            }
+
+
+                            var promocionesDisp = datAlmacen.promociones.FirstOrDefault();
+
+                            if (promocionesDisp == null)
+                            {
+                                datosBi.FnlogApp("No se encontraron datos correctos de Promociones de donde tomar los montos.");
+                                continue;
+
+                            }
+
+
+                            ProductosVenta datoAlta = new ProductosVenta
+                            {
+                                nomSucursal = nombreSucursalGranjita,
+                                idInterno = item.id,
+                                CodProducto = item.codigo,
+                                Descripcion = item.descripcion,
+                                PrecioMenudeo = Convert.ToDecimal(datAlmacen.precio_neto),
+                                PrecioMayoreo = Convert.ToDecimal(promocionesDisp.precio_neto),
+                                Moneda = item.moneda == null ? "" : item.moneda,
+                                Unidad = item.unidad.nombre == "Kilogramos" ? "Kg" : item.unidad.nombre,
+                                CondicionMayoreo = "Al comprar " + Math.Round(Convert.ToDecimal(promocionesDisp.cantidad), 2).ToString() + " " + 
+                                (promocionesDisp.nombre_unidad == "Kilogramos" ? "Kg" : promocionesDisp.nombre_unidad) + " o más."
+                            };
+
+
+
+                            datosBi.AltaProductosVenta(datoAlta);
+                        }
 
 
 
 
-                        datosBi.AltaProductosVenta(datoAlta);
+
                     }
 
 

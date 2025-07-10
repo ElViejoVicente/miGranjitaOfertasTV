@@ -1,4 +1,5 @@
-﻿using CargaDatosAPI.ORM;
+﻿using CargaDatosAPI.API;
+using CargaDatosAPI.ORM;
 using Dapper;
 using Negocio.API;
 using Newtonsoft.Json;
@@ -22,9 +23,11 @@ namespace CargaDatosAPI.BI
         #region Propiedades
 
         protected String urlGranjita = ConfigurationManager.AppSettings["urlAPI.Granjita"];
+        protected String urlGranjitaSubSubLinea = ConfigurationManager.AppSettings["urlAPI.GranjitaSubSubLineas"];
         protected String KeyGranjita = ConfigurationManager.AppSettings["urlAPIKey.Granjita"];
 
         protected String urlCorralito = ConfigurationManager.AppSettings["urlAPI.Corralito"];
+        protected String urlCorralitoSubSubLinea = ConfigurationManager.AppSettings["urlAPI.CorralitoSubSubLineas"];
         protected String keyCorralito = ConfigurationManager.AppSettings["urlAPIKey.Corralito"];
 
         protected int LimiteLlamadas = 100;
@@ -124,6 +127,61 @@ namespace CargaDatosAPI.BI
 
                 //var url = "https://pcg.admintotal.com/api/v2/productos/";
                 //var apiKey = "V3S2BQ7KR83NKW3Y47RSWEOOLNQMZ40JWEY";
+                int contador = 0;
+
+
+                // paso 1 obtener el catalogo de SubSubLines
+
+                RootSubSubLineaAPI resultadoSubSubLinea = new RootSubSubLineaAPI();
+                List<ResultsSubsSubLinea> resultadoSubSubLineas = new List<ResultsSubsSubLinea>();
+
+                contador = 0;
+
+                var requestSL = (HttpWebRequest)WebRequest.Create(urlGranjitaSubSubLinea);
+
+                requestSL.Method = "GET";
+                requestSL.Headers.Add("api-key", KeyGranjita);
+
+                using (var response = (HttpWebResponse)requestSL.GetResponse())
+                using (var stream = response.GetResponseStream())
+                using (var reader = new StreamReader(stream))
+                {
+                    var json = reader.ReadToEnd();
+                    resultadoSubSubLinea = JsonConvert.DeserializeObject<RootSubSubLineaAPI>(json);
+                }
+
+                resultadoSubSubLineas.AddRange(resultadoSubSubLinea.results);
+
+                while (resultadoSubSubLinea.next != null && contador < LimiteLlamadas)
+                {
+
+
+                    var requestNext = (HttpWebRequest)WebRequest.Create(resultadoSubSubLinea.next);
+
+
+                    requestNext.Method = "GET";
+                    requestNext.Headers.Add("api-key", KeyGranjita);
+
+                    using (var response = (HttpWebResponse)requestNext.GetResponse())
+                    using (var stream = response.GetResponseStream())
+                    using (var reader = new StreamReader(stream))
+                    {
+                        var json = reader.ReadToEnd();
+                        resultadoSubSubLinea = JsonConvert.DeserializeObject<RootSubSubLineaAPI>(json);
+                    }
+
+
+                    resultadoSubSubLineas.AddRange(resultadoSubSubLinea.results);
+                    contador++;
+                }
+
+
+
+
+                // paso 2 obtener el catalogo de Productos Completo
+
+
+
 
                 RootllamadoAPI resultado = new RootllamadoAPI();
 
@@ -131,7 +189,7 @@ namespace CargaDatosAPI.BI
 
                 List<Result> resultadoFiltrado = new List<Result>();
 
-                int contador = 0;
+                contador = 0;
 
 
 
@@ -181,8 +239,21 @@ namespace CargaDatosAPI.BI
 
 
 
-                // Aquí puedes procesar el resultado filtrado
-                resultadoFiltrado = resultadoAcumulado.Where(x => x.codigo.Length == 4 && x.codigo.StartsWith("9")).ToList();
+                // Aquí puedes procesar el resultado filtrado se filtra por subsublineas que  tengo el nombre calle 7
+
+
+                List<int> SubSubLineaFiltrar = resultadoSubSubLineas
+                    .Where(x => x.nombre.Contains("Calle 7"))
+                    .Select(x => x.sublinea)
+                    .ToList();
+
+
+
+
+                resultadoFiltrado = resultadoAcumulado.Where(x=>  SubSubLineaFiltrar.Contains(x.subsublinea)).ToList();
+
+
+      
 
                 return resultadoFiltrado;
 

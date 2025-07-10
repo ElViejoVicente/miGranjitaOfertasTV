@@ -64,7 +64,9 @@
     <Compile Include="API\InfoAlmacene.cs" />
     <Compile Include="API\Promocione.cs" />
     <Compile Include="API\Result.cs" />
+    <Compile Include="API\ResultsSubsSubLinea.cs" />
     <Compile Include="API\RootllamadoAPI.cs" />
+    <Compile Include="API\RootSubSubLineaAPI.cs" />
     <Compile Include="API\Unidad.cs" />
     <Compile Include="API\Unidade.cs" />
     <Compile Include="BI\DatosBI.cs" />
