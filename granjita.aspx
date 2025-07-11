@@ -58,7 +58,7 @@
             font-size: 18px;
             color: #333;
         }
-        
+
         .titulo-encabezado {
             font-size: 24px;
             font-weight: bold;
@@ -106,9 +106,9 @@
 
         .grid-container {
             margin: 40px auto;
-            width: 95%;
-            max-width: 1400px;
-            height: 800px;
+            width: 98%;
+            max-width: 1600px;
+            height: 85vh;
             overflow: hidden;
             position: fixed;
             top: 50%;
@@ -122,20 +122,20 @@
             visibility: hidden;
             transition: all 0.5s ease;
         }
-        
-        .grid-container.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translate(-50%, -50%) scale(1);
-        }
-        
+
+            .grid-container.visible {
+                opacity: 1;
+                visibility: visible;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
         .contenedor-grid {
             width: 100%;
             height: 100%;
             position: relative;
             overflow: hidden;
         }
-        
+
         .grid-header-fixed {
             position: absolute;
             top: 0;
@@ -146,7 +146,7 @@
             z-index: 2;
             background-color: #4CAF50;
         }
-        
+
         .grid-body-scrollable {
             position: absolute;
             top: 60px;
@@ -160,39 +160,67 @@
             table-layout: fixed;
             border-collapse: collapse;
         }
-        
+
         .dxgvHeader {
             background-color: #4CAF50 !important;
             color: white !important;
             font-weight: bold;
             font-size: 28px !important;
         }
-        
-        .dxgvHeader td {
-            padding: 15px 10px !important;
-            text-align: center !important;
+
+            /* Aumentar espacio para encabezados */
+            .dxgvHeader td {
+                padding: 12px 5px !important; /* Más espacio vertical, menos horizontal */
+                white-space: normal !important; /* Permite múltiples líneas */
+                line-height: 1.2 !important; /* Mejor espaciado entre líneas */
+                font-size: 24px !important; /* Tamaño de fuente reducido */
+            }
+
+        /* Ajustar específicamente la columna de condición */
+        .col-condicion {
+            width: 180px !important; /* Aumentado a 180px */
         }
-        
+
+        /* Asegurar que el texto del encabezado se ajuste */
+        .dxgvHeader .col-condicion {
+            word-break: break-word; /* Rompe palabras largas */
+        }
+
         .dxgvDataRow td {
             padding: 15px 10px !important;
             border-bottom: 1px solid #ddd !important;
             text-align: center !important;
             font-size: 24px;
         }
-        
+
         .dxgvDataRowAlt td {
             background-color: #f9f9f9 !important;
         }
-        
+
         .dxgvDataRow:hover td {
             background-color: #f1f1f1 !important;
         }
 
-        .col-codigo { width: 150px !important; }
-        .col-descripcion { width: 300px !important; }
-        .col-precio { width: 200px !important; }
-        .col-moneda { width: 100px !important; }
-        .col-unidad { width: 100px !important; }
+        .col-codigo {
+            width: 120px !important;
+        }
+
+        .col-descripcion {
+            width: 350px !important;
+        }
+
+        .col-precio {
+            width: 180px !important;
+        }
+
+        .col-unidad {
+            width: 100px !important;
+        }
+
+        .col-condicion {
+            width: 150px !important;
+        }
+
 
         footer {
             text-align: center;
@@ -234,11 +262,11 @@
             z-index: 98;
             transition: transform 0.5s ease-out;
         }
-        
-        .franja-firma.visible {
-            transform: translateY(-260px);
-        }
-        
+
+            .franja-firma.visible {
+                transform: translateY(-260px);
+            }
+
         .contenedor-firma {
             display: flex;
             justify-content: center;
@@ -246,7 +274,7 @@
             width: 100%;
             height: 100%;
         }
-        
+
         .imagen-firma {
             max-height: 80%;
             max-width: 90%;
@@ -265,11 +293,11 @@
             visibility: hidden;
             transition: all 0.3s ease;
         }
-        
-        .overlay.visible {
-            opacity: 1;
-            visibility: visible;
-        }
+
+            .overlay.visible {
+                opacity: 1;
+                visibility: visible;
+            }
 
         .cerrar-tabla {
             position: absolute;
@@ -303,16 +331,16 @@
             font-size: 16px;
         }
 
-        .refresh-notification.visible {
-            opacity: 1;
-        }
+            .refresh-notification.visible {
+                opacity: 1;
+            }
 
         @media (max-width: 768px) {
             .encabezado {
                 flex-direction: column;
                 padding: 10px;
             }
-            
+
             .titulo-encabezado {
                 margin: 10px 0;
                 font-size: 20px;
@@ -328,14 +356,14 @@
                 margin-top: 5px;
                 font-size: 0.8em;
             }
-            
+
             .franja-firma {
                 height: 150px;
             }
-            
-            .franja-firma.visible {
-                transform: translateY(-210px);
-            }
+
+                .franja-firma.visible {
+                    transform: translateY(-210px);
+                }
 
             .nombre-empresa {
                 font-size: 30px;
@@ -350,12 +378,12 @@
                 height: 80vh;
                 transform: translate(-50%, -50%) scale(0.8);
             }
-            
-            .grid-container.visible {
-                transform: translate(-50%, -50%) scale(0.9);
-            }
-            
-            .dxgvHeader td, 
+
+                .grid-container.visible {
+                    transform: translate(-50%, -50%) scale(0.9);
+                }
+
+            .dxgvHeader td,
             .dxgvDataRow td {
                 padding: 10px 5px !important;
                 font-size: 16px;
@@ -364,20 +392,34 @@
             .dxgvHeader {
                 font-size: 20px !important;
             }
-            
+
             .grid-header-fixed {
                 height: 50px;
             }
-            
+
             .grid-body-scrollable {
                 top: 50px;
             }
-            
-            .col-codigo { width: 80px !important; }
-            .col-descripcion { width: 150px !important; }
-            .col-precio { width: 100px !important; }
-            .col-moneda { width: 70px !important; }
-            .col-unidad { width: 70px !important; }
+
+            .col-codigo {
+                width: 80px !important;
+            }
+
+            .col-descripcion {
+                width: 150px !important;
+            }
+
+            .col-precio {
+                width: 100px !important;
+            }
+
+            .col-moneda {
+                width: 70px !important;
+            }
+
+            .col-unidad {
+                width: 70px !important;
+            }
         }
     </style>
 </head>
@@ -418,7 +460,7 @@
             <button class="cerrar-tabla" onclick="ocultarGrid(); return false;">×</button>
             <div class="contenedor-grid">
                 <div class="grid-header-fixed">
-                    <dx:ASPxGridView ID="gvHeader" runat="server" AutoGenerateColumns="False" 
+                    <dx:ASPxGridView ID="gvHeader" runat="server" AutoGenerateColumns="False"
                         Width="100%" EnableCallBacks="False" ShowHeader="True" ShowFooter="False">
                         <Settings ShowVerticalScrollBar="False" ShowHorizontalScrollBar="False" />
                         <SettingsBehavior AllowSort="False" AllowDragDrop="False" />
@@ -429,20 +471,27 @@
                         <Columns>
                             <dx:GridViewDataTextColumn FieldName="CodProducto" Caption="Código" Width="150px" HeaderStyle-CssClass="col-codigo" />
                             <dx:GridViewDataTextColumn FieldName="Descripcion" Caption="Descripción" Width="300px" HeaderStyle-CssClass="col-descripcion" />
-                            <dx:GridViewDataTextColumn FieldName="PrecioMenudeo" Caption="Precio Menudeo" Width="200px" HeaderStyle-CssClass="col-precio">
-                                <PropertiesTextEdit DisplayFormatString="{0:C}" />
+                            <dx:GridViewDataTextColumn FieldName="PrecioMenudeo" Width="200px" CellStyle-CssClass="col-precio">
+                                <PropertiesTextEdit
+                                    DisplayFormatString="{0:$0.00 MXN;-$0.00 MXN;--}"
+                                    DisplayFormatInEditMode="true" />
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="PrecioMayoreo" Caption="Precio Mayoreo" Width="200px" HeaderStyle-CssClass="col-precio">
-                                <PropertiesTextEdit DisplayFormatString="{0:C}" />
+                            <dx:GridViewDataTextColumn FieldName="PrecioMayoreo" Width="200px" CellStyle-CssClass="col-precio">
+                                <PropertiesTextEdit
+                                    DisplayFormatString="{0:$0.00 MXN;-$0.00 MXN;--}"
+                                    DisplayFormatInEditMode="true" />
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="Moneda" Caption="Moneda" Width="100px" HeaderStyle-CssClass="col-moneda" />
-                            <dx:GridViewDataTextColumn FieldName="Unidad" Caption="Unidad" Width="100px" HeaderStyle-CssClass="col-unidad" />
+                            <dx:GridViewDataTextColumn FieldName="Unidad" Caption="Unidad" Width="100px" HeaderStyle-CssClass="col-moneda" />
+                            <dx:GridViewDataTextColumn FieldName="CondicionMayoreo" Caption="Condición Mayoreo"
+                                Width="180px" HeaderStyle-CssClass="col-condicion">
+                                <HeaderStyle Wrap="True" />                              
+                            </dx:GridViewDataTextColumn>
                         </Columns>
                     </dx:ASPxGridView>
                 </div>
-                
+
                 <div class="grid-body-scrollable">
-                    <dx:ASPxGridView ID="gvMiGranjita" runat="server" AutoGenerateColumns="False" 
+                    <dx:ASPxGridView ID="gvMiGranjita" runat="server" AutoGenerateColumns="False"
                         Width="100%" KeyFieldName="CodProducto" OnDataBinding="gvMiGranjita_DataBinding"
                         EnableCallBacks="False" ShowHeader="False">
                         <Settings ShowVerticalScrollBar="False" ShowHorizontalScrollBar="False" />
@@ -456,13 +505,17 @@
                             <dx:GridViewDataTextColumn FieldName="CodProducto" Width="150px" CellStyle-CssClass="col-codigo" />
                             <dx:GridViewDataTextColumn FieldName="Descripcion" Width="300px" CellStyle-CssClass="col-descripcion" />
                             <dx:GridViewDataTextColumn FieldName="PrecioMenudeo" Width="200px" CellStyle-CssClass="col-precio">
-                                <PropertiesTextEdit DisplayFormatString="{0:C}" />
+                                <PropertiesTextEdit
+                                    DisplayFormatString="{0:$0.00 MXN;-$0.00 MXN;--}"
+                                    DisplayFormatInEditMode="true" />
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn FieldName="PrecioMayoreo" Width="200px" CellStyle-CssClass="col-precio">
-                                <PropertiesTextEdit DisplayFormatString="{0:C}" />
+                                <PropertiesTextEdit
+                                    DisplayFormatString="{0:$0.00 MXN;-$0.00 MXN;--}"
+                                    DisplayFormatInEditMode="true" />
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="Moneda" Width="100px" CellStyle-CssClass="col-moneda" />
-                            <dx:GridViewDataTextColumn FieldName="Unidad" Width="100px" CellStyle-CssClass="col-unidad" />
+                            <dx:GridViewDataTextColumn FieldName="Unidad" Width="100px" CellStyle-CssClass="col-moneda" />
+                            <dx:GridViewDataTextColumn FieldName="CondicionMayoreo" Width="100px" CellStyle-CssClass="col-CondicionMayoreo" />
                         </Columns>
                     </dx:ASPxGridView>
                 </div>

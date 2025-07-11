@@ -50,9 +50,6 @@ namespace miGranjitaOfertasTV
 
         #endregion
 
-
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -60,6 +57,7 @@ namespace miGranjitaOfertasTV
                 try
                 {
                     // Cargar datos
+                    Session.Remove("sseListaProductosMiGranjita");
                     ListaProductos = datosProductos.ObtenerProductosVenta(nombreSucursalGranjita);
 
                     // Vincular datos a ambos grids
@@ -82,5 +80,6 @@ namespace miGranjitaOfertasTV
             gvMiGranjita.DataSource = ListaProductos;
 
         }
+
     }
 }
