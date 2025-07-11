@@ -46,7 +46,7 @@ namespace CargaDatosAPI.BI
                     db.Execute(sql: "sp_CRUD_ProductosVenta_Insert", param: new
                     {
                         values.nomSucursal,
-                        values.idInterno ,
+                        values.idInterno,
                         values.CodProducto,
                         values.Descripcion,
                         values.PrecioMenudeo,
@@ -250,10 +250,10 @@ namespace CargaDatosAPI.BI
 
 
 
-                resultadoFiltrado = resultadoAcumulado.Where(x=>  SubSubLineaFiltrar.Contains(x.subsublinea)).ToList();
+                resultadoFiltrado = resultadoAcumulado.Where(x => SubSubLineaFiltrar.Contains(x.subsublinea)).ToList();
 
 
-      
+
 
                 return resultadoFiltrado;
 
@@ -276,6 +276,61 @@ namespace CargaDatosAPI.BI
 
                 //var url = "https://corralito.admintotal.com/api/v2/productos/";
                 //var apiKey = "D5QNWDH39NUGGRKCDR5VWEGXMMZMX3L77EM";
+                int contador = 0;
+
+
+                // paso 1 obtener el catalogo de SubSubLinea
+
+                RootSubSubLineaAPI resultadoSubSubLinea = new RootSubSubLineaAPI();
+                List<ResultsSubsSubLinea> resultadoSubSubLineas = new List<ResultsSubsSubLinea>();
+
+                contador = 0;
+
+                var requestSL = (HttpWebRequest)WebRequest.Create(urlCorralitoSubSubLinea);
+
+                requestSL.Method = "GET";
+                requestSL.Headers.Add("api-key", keyCorralito);
+
+                using (var response = (HttpWebResponse)requestSL.GetResponse())
+                using (var stream = response.GetResponseStream())
+                using (var reader = new StreamReader(stream))
+                {
+                    var json = reader.ReadToEnd();
+                    resultadoSubSubLinea = JsonConvert.DeserializeObject<RootSubSubLineaAPI>(json);
+                }
+
+                resultadoSubSubLineas.AddRange(resultadoSubSubLinea.results);
+
+                while (resultadoSubSubLinea.next != null && contador < LimiteLlamadas)
+                {
+
+
+                    var requestNext = (HttpWebRequest)WebRequest.Create(resultadoSubSubLinea.next);
+
+
+                    requestNext.Method = "GET";
+                    requestNext.Headers.Add("api-key",keyCorralito);
+
+                    using (var response = (HttpWebResponse)requestNext.GetResponse())
+                    using (var stream = response.GetResponseStream())
+                    using (var reader = new StreamReader(stream))
+                    {
+                        var json = reader.ReadToEnd();
+                        resultadoSubSubLinea = JsonConvert.DeserializeObject<RootSubSubLineaAPI>(json);
+                    }
+
+
+                    resultadoSubSubLineas.AddRange(resultadoSubSubLinea.results);
+                    contador++;
+                }
+
+
+
+
+                // paso 2 obtener el catalogo de Productos Completo
+
+
+
 
                 RootllamadoAPI resultado = new RootllamadoAPI();
 
@@ -283,7 +338,7 @@ namespace CargaDatosAPI.BI
 
                 List<Result> resultadoFiltrado = new List<Result>();
 
-                int contador = 0;
+                contador = 0;
 
 
 
@@ -333,8 +388,21 @@ namespace CargaDatosAPI.BI
 
 
 
-                // Aquí puedes procesar el resultado filtrado
-                resultadoFiltrado = resultadoAcumulado.Where(x => x.codigo.Length == 4 && x.codigo.StartsWith("9")).ToList();
+                // Aquí puedes procesar el resultado filtrado se filtra por subsublineas que  tengo el nombre calle 7
+
+
+                List<int> SubSubLineaFiltrar = resultadoSubSubLineas
+                    .Where(x => x.nombre.Contains("Calle 7"))
+                    .Select(x => x.sublinea)
+                    .ToList();
+
+
+
+
+                resultadoFiltrado = resultadoAcumulado.Where(x => SubSubLineaFiltrar.Contains(x.subsublinea)).ToList();
+
+
+
 
                 return resultadoFiltrado;
 
@@ -342,14 +410,10 @@ namespace CargaDatosAPI.BI
             catch (Exception ex)
             {
 
-                throw new Exception("Fallo en la llamada a la API de Corralito , Detalle: " + ex.Message);
+                throw new Exception("Fallo en la llamada a la API de El Corralito , Detalle: " + ex.Message);
             }
 
 
         }
-
-
-
-
     }
 }
