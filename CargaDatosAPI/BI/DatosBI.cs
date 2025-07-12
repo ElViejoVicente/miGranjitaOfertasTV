@@ -392,7 +392,7 @@ namespace CargaDatosAPI.BI
 
 
                 List<int> SubSubLineaFiltrar = resultadoSubSubLineas
-                    .Where(x => x.nombre.Contains("Calle 7"))
+                    .Where(x => x.nombre.Contains("Corralito"))
                     .Select(x => x.sublinea)
                     .ToList();
 

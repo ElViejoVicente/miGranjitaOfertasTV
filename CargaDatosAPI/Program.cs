@@ -185,13 +185,13 @@ namespace CargaDatosAPI
                     foreach (var item in listaProductos)
                     {
 
-                        // validacion si existe almcen nombre 003 Calle 7
+                        // validacion si existe almcen nombre Matriz"
 
-                        if (item.info_almacenes.Exists(x => x.almacen.nombre.Contains("Calle 7")))   // Validar a OJo que no existan variantes de Calle 7 
+                        if (item.info_almacenes.Exists(x => x.almacen.nombre.Contains("Matriz")))   // Validar a OJo que no existan variantes de Calle 7 
                         {
 
 
-                            var datAlmacen = item.info_almacenes.Where(x => x.almacen.nombre.Contains("Calle 7")).FirstOrDefault();
+                            var datAlmacen = item.info_almacenes.Where(x => x.almacen.nombre.Contains("Matriz")).FirstOrDefault();
 
                             if (datAlmacen == null)
                             {
