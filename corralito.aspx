@@ -34,11 +34,11 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 120%;
-            background: url('imagenes/IMG.jpg') no-repeat center center;
+            height: 100%;
+            background: url('imagenes/Fondo.png') no-repeat center center;
             background-size: cover;
             will-change: transform;
-            opacity: 0.5;
+            opacity: 1;
         }
 
         .encabezado {
@@ -84,8 +84,8 @@
         }
 
         .logo-centro {
-            width: 200px;
-            margin: 30px auto;
+            width: 800px;
+            margin: 10px auto;
             display: block;
         }
 
@@ -393,7 +393,7 @@
         </div>
 
         <div class="contenido">
-            <img src="imagenes/corralito.png" alt="Logo Mi granjita" class="logo-centro">
+            <img src="imagenes/corralito2.png" alt="Logo Mi granjita" class="logo-centro">
             <div class="nombre-empresa">Productos Cárnicos El Corralito</div>
             <div class="eslogan">"Creando familias sanas"</div>
             <div class="espacio-scroll"></div>

@@ -72,6 +72,11 @@
   <ItemGroup>
     <Content Include="corralito.aspx" />
     <Content Include="granjita.aspx" />
+    <Content Include="imagenes\corralito.png" />
+    <Content Include="imagenes\firma.png" />
+    <Content Include="imagenes\IMG.jpg" />
+    <Content Include="imagenes\migranjita.jpg" />
+    <Content Include="imagenes\migranjita2.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +97,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="imagenes\Logo MG %281%29.ai" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -112,6 +118,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
