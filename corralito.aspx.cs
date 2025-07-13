@@ -60,8 +60,7 @@ namespace miGranjitaOfertasTV
                     ListaProductos = datosProductos.ObtenerProductosVenta(nombreSucursalCorralito);
 
                     // Vincular datos a ambos grids
-                    gvHeader.DataSource = ListaProductos;
-                    gvHeader.DataBind();
+                   
 
                     gvCorralito.DataSource = ListaProductos;
                     gvCorralito.DataBind();

@@ -52,6 +52,7 @@
             top: 0;
             z-index: 100;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            height: 60px;
         }
 
         .hora {
@@ -62,7 +63,7 @@
         .titulo-encabezado {
             font-size: 24px;
             font-weight: bold;
-            color: transparent;
+            color: #333;
             text-align: center;
             flex-grow: 1;
             margin: 0 20px;
@@ -73,19 +74,18 @@
 
         .contenido {
             text-align: center;
-            margin-top: 150px;
+            margin-top: 80px;
             color: black;
             position: relative;
             z-index: 2;
             padding: 20px;
-            margin: 150px auto 0;
             width: 90%;
             padding-bottom: 100px;
         }
 
         .logo-centro {
             width: 200px;
-            margin: 30px auto;
+            margin: 10px auto;
             display: block;
         }
 
@@ -93,7 +93,7 @@
             font-family: 'Lobster', cursive;
             font-size: 36px;
             color: black;
-            margin: 20px 0 10px;
+            margin: 10px 0 5px;
         }
 
         .eslogan {
@@ -101,19 +101,19 @@
             font-size: 24px;
             color: black;
             font-style: italic;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         .grid-container {
-            margin: 40px auto;
+            margin: 0 auto;
             width: 98%;
             max-width: 1600px;
-            height: 85vh;
+            height: calc(100vh - 100px);
             overflow: hidden;
             position: fixed;
-            top: 50%;
+            top: 60px;
             left: 50%;
-            transform: translate(-50%, -50%) scale(0.9);
+            transform: translateX(-50%) scale(0.9);
             background-color: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -123,11 +123,11 @@
             transition: all 0.5s ease;
         }
 
-            .grid-container.visible {
-                opacity: 1;
-                visibility: visible;
-                transform: translate(-50%, -50%) scale(1);
-            }
+        .grid-container.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) scale(1);
+        }
 
         .contenedor-grid {
             width: 100%;
@@ -141,7 +141,8 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 60px;
+            height: 90px;  /* Aumentado para títulos más grandes */
+
             overflow: hidden;
             z-index: 2;
             background-color: #4CAF50;
@@ -149,48 +150,106 @@
 
         .grid-body-scrollable {
             position: absolute;
-            top: 60px;
+            top: 70px;
             bottom: 0;
             width: 100%;
             overflow: auto;
+            margin-top: -1px;
         }
 
-        .dxgvTable {
-            width: 100% !important;
+        /* Estilos para el encabezado fijo (gvHeader) */
+        #gvHeader_DXMainTable {
+            background-color: #4CAF50 !important;
             table-layout: fixed;
-            border-collapse: collapse;
+            width: 100% !important;
         }
 
-        .dxgvHeader {
+        .dxgvHeader_PlasticBlue {
             background-color: #4CAF50 !important;
             color: white !important;
             font-weight: bold;
             font-size: 28px !important;
+            height: 70px;
         }
 
-            /* Aumentar espacio para encabezados */
-            .dxgvHeader td {
-                padding: 12px 5px !important; /* Más espacio vertical, menos horizontal */
-                white-space: normal !important; /* Permite múltiples líneas */
-                line-height: 1.2 !important; /* Mejor espaciado entre líneas */
-                font-size: 24px !important; /* Tamaño de fuente reducido */
-            }
+        .dxgvHeader td {
+            padding: 15px 5px !important;
+            white-space: normal !important;
+            line-height: 1.2 !important;
+            color: white !important;
+            text-align: center !important;
+            vertical-align: middle !important;
+        }
 
-        /* Ajustar específicamente la columna de condición */
+        /* Oculta solo los títulos de UNIDAD y CONDICIÓN MAYOREO */
+        .header-hidden {
+            visibility: hidden !important;
+            font-size: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            height: 0 !important;
+        }
+
+        /* Asegura que las celdas del cuerpo mantengan su estilo */
+        .col-unidad, .col-condicion {
+            visibility: visible !important;
+            font-size: 24px !important;
+        }
+
+        /* Ajustes de ancho de columnas */
+        .col-codigo {
+            width: 100px !important;
+            min-width: 100px !important;
+            max-width: 100px !important;
+        }
+
+        .col-descripcion {
+            width: 300px !important;
+            min-width: 300px !important;
+            max-width: 300px !important;
+            text-align: left !important;
+            padding-left: 15px !important;
+        }
+
+        .col-precio-menudeo {
+            width: 150px !important;
+            min-width: 150px !important;
+            max-width: 150px !important;
+        }
+
+        .col-precio-mayoreo {
+            width: 150px !important;
+            min-width: 150px !important;
+            max-width: 150px !important;
+        }
+
+        .col-unidad {
+            width: 80px !important;
+            min-width: 80px !important;
+            max-width: 80px !important;
+        }
+
         .col-condicion {
-            width: 180px !important; /* Aumentado a 180px */
+            width: 200px !important;
+            min-width: 200px !important;
+            max-width: 200px !important;
         }
 
-        /* Asegurar que el texto del encabezado se ajuste */
-        .dxgvHeader .col-condicion {
-            word-break: break-word; /* Rompe palabras largas */
+        /* Estilos para el cuerpo de la tabla (gvMiGranjita) */
+        #gvMiGranjita_DXMainTable {
+            border-top: none !important;
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+            table-layout: fixed;
+            width: 100% !important;
         }
 
         .dxgvDataRow td {
-            padding: 15px 10px !important;
+            padding: 15px 5px !important;
             border-bottom: 1px solid #ddd !important;
             text-align: center !important;
             font-size: 24px;
+            vertical-align: middle !important;
         }
 
         .dxgvDataRowAlt td {
@@ -200,27 +259,6 @@
         .dxgvDataRow:hover td {
             background-color: #f1f1f1 !important;
         }
-
-        .col-codigo {
-            width: 120px !important;
-        }
-
-        .col-descripcion {
-            width: 350px !important;
-        }
-
-        .col-precio {
-            width: 180px !important;
-        }
-
-        .col-unidad {
-            width: 100px !important;
-        }
-
-        .col-condicion {
-            width: 150px !important;
-        }
-
 
         footer {
             text-align: center;
@@ -263,9 +301,9 @@
             transition: transform 0.5s ease-out;
         }
 
-            .franja-firma.visible {
-                transform: translateY(-260px);
-            }
+        .franja-firma.visible {
+            transform: translateY(-260px);
+        }
 
         .contenedor-firma {
             display: flex;
@@ -294,10 +332,10 @@
             transition: all 0.3s ease;
         }
 
-            .overlay.visible {
-                opacity: 1;
-                visibility: visible;
-            }
+        .overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
 
         .cerrar-tabla {
             position: absolute;
@@ -331,19 +369,24 @@
             font-size: 16px;
         }
 
-            .refresh-notification.visible {
-                opacity: 1;
-            }
+        .refresh-notification.visible {
+            opacity: 1;
+        }
 
         @media (max-width: 768px) {
             .encabezado {
                 flex-direction: column;
                 padding: 10px;
+                height: auto;
             }
 
             .titulo-encabezado {
                 margin: 10px 0;
                 font-size: 20px;
+            }
+
+            .contenido {
+                margin-top: 100px;
             }
 
             footer {
@@ -361,9 +404,9 @@
                 height: 150px;
             }
 
-                .franja-firma.visible {
-                    transform: translateY(-210px);
-                }
+            .franja-firma.visible {
+                transform: translateY(-210px);
+            }
 
             .nombre-empresa {
                 font-size: 30px;
@@ -375,13 +418,14 @@
 
             .grid-container {
                 width: 95%;
-                height: 80vh;
-                transform: translate(-50%, -50%) scale(0.8);
+                height: calc(100vh - 120px);
+                transform: translateX(-50%) scale(0.8);
+                top: 80px;
             }
 
-                .grid-container.visible {
-                    transform: translate(-50%, -50%) scale(0.9);
-                }
+            .grid-container.visible {
+                transform: translateX(-50%) scale(0.9);
+            }
 
             .dxgvHeader td,
             .dxgvDataRow td {
@@ -391,6 +435,7 @@
 
             .dxgvHeader {
                 font-size: 20px !important;
+                height: 50px !important;
             }
 
             .grid-header-fixed {
@@ -402,23 +447,39 @@
             }
 
             .col-codigo {
-                width: 80px !important;
+                width: 70px !important;
+                min-width: 70px !important;
+                max-width: 70px !important;
             }
 
             .col-descripcion {
-                width: 150px !important;
+                width: 10px !important;
+                min-width: 10px !important;
+                max-width: 10px !important;
             }
 
-            .col-precio {
+            .col-precio-menudeo {
                 width: 100px !important;
+                min-width: 100px !important;
+                max-width: 100px !important;
             }
 
-            .col-moneda {
-                width: 70px !important;
+            .col-precio-mayoreo {
+                width: 100px !important;
+                min-width: 100px !important;
+                max-width: 100px !important;
             }
 
             .col-unidad {
-                width: 70px !important;
+                width: 60px !important;
+                min-width: 60px !important;
+                max-width: 60px !important;
+            }
+
+            .col-condicion {
+                width: 120px !important;
+                min-width: 120px !important;
+                max-width: 120px !important;
             }
         }
     </style>
@@ -457,34 +518,45 @@
         <div class="overlay" id="overlay"></div>
 
         <div class="grid-container" id="gridContainer">
-            <button class="cerrar-tabla" onclick="ocultarGrid(); return false;">×</button>
             <div class="contenedor-grid">
                 <div class="grid-header-fixed">
                     <dx:ASPxGridView ID="gvHeader" runat="server" AutoGenerateColumns="False"
-                        Width="100%" EnableCallBacks="False" ShowHeader="True" ShowFooter="False">
+                        Width="100%" EnableCallBacks="False" ShowHeader="True" ShowFooter="False"
+                        EnableRowsCache="False" EnableTheming="False">
                         <Settings ShowVerticalScrollBar="False" ShowHorizontalScrollBar="False" />
                         <SettingsBehavior AllowSort="False" AllowDragDrop="False" />
                         <SettingsPager Mode="ShowAllRecords" Visible="False" />
                         <Styles>
-                            <Header BackColor="#4CAF50" Font-Bold="True" Font-Size="28px" ForeColor="White" />
+                            <Header BackColor="#4CAF50" Font-Bold="True" ForeColor="White" Font-Size="28px" />
+                            <Cell Font-Size="0px" />
+                            <HeaderPanel BackColor="#4CAF50" />
                         </Styles>
                         <Columns>
-                            <dx:GridViewDataTextColumn FieldName="CodProducto" Caption="Código" Width="150px" HeaderStyle-CssClass="col-codigo" />
-                            <dx:GridViewDataTextColumn FieldName="Descripcion" Caption="Descripción" Width="300px" HeaderStyle-CssClass="col-descripcion" />
-                            <dx:GridViewDataTextColumn FieldName="PrecioMenudeo" Width="200px" CellStyle-CssClass="col-precio">
-                                <PropertiesTextEdit
-                                    DisplayFormatString="{0:$0.00 MXN;-$0.00 MXN;--}"
-                                    DisplayFormatInEditMode="true" />
+                            <dx:GridViewDataTextColumn FieldName="CodProducto" Caption="CÓDIGO" Width="100px" 
+                                HeaderStyle-CssClass="col-codigo" CellStyle-CssClass="col-codigo">
+                                <HeaderStyle Font-Bold="true" />
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="PrecioMayoreo" Width="200px" CellStyle-CssClass="col-precio">
-                                <PropertiesTextEdit
-                                    DisplayFormatString="{0:$0.00 MXN;-$0.00 MXN;--}"
-                                    DisplayFormatInEditMode="true" />
+                            <dx:GridViewDataTextColumn FieldName="Descripcion" Caption="DESCRIPCIÓN" Width="300px" 
+                                HeaderStyle-CssClass="col-descripcion" CellStyle-CssClass="col-descripcion">
+                                <HeaderStyle Font-Bold="true" />
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="Unidad" Caption="Unidad" Width="100px" HeaderStyle-CssClass="col-moneda" />
-                            <dx:GridViewDataTextColumn FieldName="CondicionMayoreo" Caption="Condición Mayoreo"
-                                Width="180px" HeaderStyle-CssClass="col-condicion">
-                                <HeaderStyle Wrap="True" />                              
+                            <dx:GridViewDataTextColumn FieldName="PrecioMenudeo" Caption="PRECIO MENUDEO" Width="150px" 
+                                HeaderStyle-CssClass="col-precio-menudeo" CellStyle-CssClass="col-precio-menudeo">
+                                <PropertiesTextEdit DisplayFormatString="{0:$0.00 MXN;-$0.00 MXN;--}" />
+                                <HeaderStyle Font-Bold="true" />
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="PrecioMayoreo" Caption="PRECIO MAYOREO" Width="150px" 
+                                HeaderStyle-CssClass="col-precio-mayoreo" CellStyle-CssClass="col-precio-mayoreo">
+                                <PropertiesTextEdit DisplayFormatString="{0:$0.00 MXN;-$0.00 MXN;--}" />
+                                <HeaderStyle Font-Bold="true" />
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="Unidad" Caption=" " Width="80px" 
+                                HeaderStyle-CssClass="col-unidad header-hidden" CellStyle-CssClass="col-unidad">
+                                <HeaderStyle Font-Bold="true" />
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="CondicionMayoreo" Caption=" " Width="200px" 
+                                HeaderStyle-CssClass="col-condicion header-hidden" CellStyle-CssClass="col-condicion">
+                                <HeaderStyle Font-Bold="true" Wrap="True" />
                             </dx:GridViewDataTextColumn>
                         </Columns>
                     </dx:ASPxGridView>
@@ -493,29 +565,33 @@
                 <div class="grid-body-scrollable">
                     <dx:ASPxGridView ID="gvMiGranjita" runat="server" AutoGenerateColumns="False"
                         Width="100%" KeyFieldName="CodProducto" OnDataBinding="gvMiGranjita_DataBinding"
-                        EnableCallBacks="False" ShowHeader="False">
+                        EnableCallBacks="False" ShowHeader="False" EnableTheming="False">
                         <Settings ShowVerticalScrollBar="False" ShowHorizontalScrollBar="False" />
                         <SettingsBehavior AllowSort="False" />
                         <SettingsPager Mode="ShowAllRecords" />
                         <Styles>
+                            <Header BackColor="Transparent" Border-BorderWidth="0" />
+                            <HeaderPanel BackColor="Transparent" Border-BorderWidth="0" />
                             <Cell Font-Size="24px" />
-                            <AlternatingRow Enabled="True" BackColor="#F9F9F9" />
+                            <AlternatingRow Enabled="True" BackColor="Transparent" />
                         </Styles>
                         <Columns>
-                            <dx:GridViewDataTextColumn FieldName="CodProducto" Width="150px" CellStyle-CssClass="col-codigo" />
-                            <dx:GridViewDataTextColumn FieldName="Descripcion" Width="300px" CellStyle-CssClass="col-descripcion" />
-                            <dx:GridViewDataTextColumn FieldName="PrecioMenudeo" Width="200px" CellStyle-CssClass="col-precio">
-                                <PropertiesTextEdit
-                                    DisplayFormatString="{0:$0.00 MXN;-$0.00 MXN;--}"
-                                    DisplayFormatInEditMode="true" />
+                            <dx:GridViewDataTextColumn FieldName="CodProducto" Width="100px" 
+                                CellStyle-CssClass="col-codigo" />
+                            <dx:GridViewDataTextColumn FieldName="Descripcion" Width="300px" 
+                                CellStyle-CssClass="col-descripcion" />
+                            <dx:GridViewDataTextColumn FieldName="PrecioMenudeo" Width="150px" 
+                                CellStyle-CssClass="col-precio-menudeo">
+                                <PropertiesTextEdit DisplayFormatString="{0:$0.00 MXN;-$0.00 MXN;--}" />
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="PrecioMayoreo" Width="200px" CellStyle-CssClass="col-precio">
-                                <PropertiesTextEdit
-                                    DisplayFormatString="{0:$0.00 MXN;-$0.00 MXN;--}"
-                                    DisplayFormatInEditMode="true" />
+                            <dx:GridViewDataTextColumn FieldName="PrecioMayoreo" Width="150px" 
+                                CellStyle-CssClass="col-precio-mayoreo">
+                                <PropertiesTextEdit DisplayFormatString="{0:$0.00 MXN;-$0.00 MXN;--}" />
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="Unidad" Width="100px" CellStyle-CssClass="col-moneda" />
-                            <dx:GridViewDataTextColumn FieldName="CondicionMayoreo" Width="100px" CellStyle-CssClass="col-CondicionMayoreo" />
+                            <dx:GridViewDataTextColumn FieldName="Unidad" Width="80px" 
+                                CellStyle-CssClass="col-unidad" />
+                            <dx:GridViewDataTextColumn FieldName="CondicionMayoreo" Width="200px" 
+                                CellStyle-CssClass="col-condicion" />
                         </Columns>
                     </dx:ASPxGridView>
                 </div>
@@ -578,13 +654,7 @@
             animacionGrid = requestAnimationFrame(animar);
         }
 
-        function ocultarGrid() {
-            document.getElementById('gridContainer').classList.remove('visible');
-            document.getElementById('overlay').classList.remove('visible');
-            gridVisible = false;
-            document.body.style.overflow = '';
-            cancelAnimationFrame(animacionGrid);
-        }
+       
 
         function actualizarHora() {
             const ahora = new Date();
