@@ -72,8 +72,12 @@
   <ItemGroup>
     <Content Include="corralito.aspx" />
     <Content Include="granjita.aspx" />
+    <Content Include="imagenes\Captura de pantalla 2025-07-11 200209.png" />
     <Content Include="imagenes\corralito.png" />
+    <Content Include="imagenes\corralito2.png" />
+    <Content Include="imagenes\corralito3.jpg" />
     <Content Include="imagenes\firma.png" />
+    <Content Include="imagenes\Fondo.png" />
     <Content Include="imagenes\IMG.jpg" />
     <Content Include="imagenes\migranjita.jpg" />
     <Content Include="imagenes\migranjita2.png" />
