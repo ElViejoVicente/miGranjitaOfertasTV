@@ -63,7 +63,7 @@
         .titulo-encabezado {
             font-size: 24px;
             font-weight: bold;
-            color: #333;
+            color: transparent;
             text-align: center;
             flex-grow: 1;
             margin: 0 20px;
@@ -84,7 +84,7 @@
         }
 
         .logo-centro {
-            width: 1000px;
+            width: 900px;
             margin: 10px auto;
             display: block;
         }
@@ -129,6 +129,34 @@
             transform: translateX(-50%) scale(1);
         }
 
+         .grid-logo-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #E4080A;
+            z-index: 3;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            gap: 15px; /* Espacio entre logo y texto */
+        }
+
+        .grid-logo-img {
+            width: 80px;
+            height: auto;
+        }
+
+        .grid-logo-text {
+            font-family: 'Lobster', cursive;
+            font-size: 28px;
+            color: #333;
+            margin: 0;
+        }
+
         .contenedor-grid {
             width: 100%;
             height: 100%;
@@ -138,19 +166,18 @@
 
         .grid-header-fixed {
             position: absolute;
-            top: 0;
+            top: 120px;
             left: 0;
             width: 100%;
-            height: 90px;  /* Aumentado para títulos más grandes */
-
+            height: 100px;
             overflow: hidden;
             z-index: 2;
-            background-color: #4CAF50;
+            background-color: #E4080A;
         }
 
         .grid-body-scrollable {
             position: absolute;
-            top: 70px;
+            top: 185px;
             bottom: 0;
             width: 100%;
             overflow: auto;
@@ -159,17 +186,19 @@
 
         /* Estilos para el encabezado fijo (gvHeader) */
         #gvHeader_DXMainTable {
-            background-color: #4CAF50 !important;
+            background-color: #E4080A !important;
             table-layout: fixed;
             width: 100% !important;
+            font-family: 'Lobster', cursive !important;
         }
 
         .dxgvHeader_PlasticBlue {
-            background-color: #4CAF50 !important;
+            background-color: #E4080A !important;
             color: white !important;
             font-weight: bold;
-            font-size: 28px !important;
-            height: 70px;
+            font-size: 20px !important;
+            height: 80px;
+            font-family: 'Lobster', cursive !important;
         }
 
         .dxgvHeader td {
@@ -236,7 +265,7 @@
         }
 
         /* Estilos para el cuerpo de la tabla (gvMiGranjita) */
-        #gvMiGranjita_DXMainTable {
+        #gvCorralito_DXMainTable {
             border-top: none !important;
             margin-top: 0 !important;
             padding-top: 0 !important;
@@ -258,6 +287,20 @@
 
         .dxgvDataRow:hover td {
             background-color: #f1f1f1 !important;
+        }
+
+        /* Estilos para filas con promoción */
+        .dxgvDataRow-con-promocion td {
+            background-color: #E9B68D !important; /* Amarillo claro */
+        }
+
+        .dxgvDataRowAlt-con-promocion td {
+            background-color: #E9B68D !important; /* Amarillo un poco más intenso para filas alternas */
+        }
+
+        .dxgvDataRow-con-promocion:hover td,
+        .dxgvDataRowAlt-con-promocion:hover td {
+            background-color: #E9B68D !important; /* Amarillo más intenso al hacer hover */
         }
 
         footer {
@@ -292,7 +335,7 @@
             left: 0;
             width: 100%;
             height: 200px;
-            background-color: rgba(76, 175, 80, 0.95);
+            background-color: #E4080A;
             color: white;
             display: flex;
             justify-content: center;
@@ -427,6 +470,27 @@
                 transform: translateX(-50%) scale(0.9);
             }
 
+            .grid-logo-header {
+                height: 100px;
+            }
+
+            .grid-logo-img {
+                width: 60px;
+            }
+
+            .grid-logo-text {
+                font-size: 22px;
+            }
+
+            .grid-header-fixed {
+                top: 100px;
+                height: 50px;
+            }
+
+            .grid-body-scrollable {
+                top: 150px;
+            }
+
             .dxgvHeader td,
             .dxgvDataRow td {
                 padding: 10px 5px !important;
@@ -438,14 +502,6 @@
                 height: 50px !important;
             }
 
-            .grid-header-fixed {
-                height: 50px;
-            }
-
-            .grid-body-scrollable {
-                top: 50px;
-            }
-
             .col-codigo {
                 width: 70px !important;
                 min-width: 70px !important;
@@ -453,9 +509,9 @@
             }
 
             .col-descripcion {
-                width: 150px !important;
-                min-width: 150px !important;
-                max-width: 150px !important;
+                width: 10px !important;
+                min-width: 10px !important;
+                max-width: 10px !important;
             }
 
             .col-precio-menudeo {
@@ -491,19 +547,19 @@
         </div>
 
         <div class="encabezado">
-            <h1 class="titulo-encabezado">Productos Cárnicos El Corralito</h1>
+            <h1 class="titulo-encabezado">Productos Cárnicos Mi granjita</h1>
             <div class="hora" id="hora"></div>
         </div>
 
         <div class="contenido">
-            <img src="imagenes/corralito2.png" alt="Logo Mi granjita" class="logo-centro">
-            <div class="nombre-empresa">Productos Cárnicos El Corralito</div>
-            <div class="eslogan"></div>
+            <img src="imagenes/corralito2.png" alt="Logo Corralito" class="logo-centro">
+            <div class="nombre-empresa">Carnes El Corralito</div>
+            <div class="eslogan">"Creando familias sanas"</div>
             <div class="espacio-scroll"></div>
         </div>
 
         <footer>
-            <div class="footer-text">&copy; 2025 Productos Cárnicos El Corralito. Todos los derechos reservados.</div>
+            <div class="footer-text">&copy; 2025 Carnes El Corralito. Todos los derechos reservados.</div>
             <div class="footer-date" id="fechaFooter"></div>
         </footer>
 
@@ -518,6 +574,10 @@
         <div class="overlay" id="overlay"></div>
 
         <div class="grid-container" id="gridContainer">
+            <div class="grid-logo-header">
+                
+                <h2 class="grid-logo-text">Carnes El Corralito </h2>
+            </div>
             <div class="contenedor-grid">
                 <div class="grid-header-fixed">
                     <dx:ASPxGridView ID="gvHeader" runat="server" AutoGenerateColumns="False"
@@ -527,9 +587,9 @@
                         <SettingsBehavior AllowSort="False" AllowDragDrop="False" />
                         <SettingsPager Mode="ShowAllRecords" Visible="False" />
                         <Styles>
-                            <Header BackColor="#4CAF50" Font-Bold="True" ForeColor="White" Font-Size="28px" />
+                            <Header BackColor="#E4080A" Font-Bold="True" ForeColor="White" Font-Size="28px" />
                             <Cell Font-Size="0px" />
-                            <HeaderPanel BackColor="#4CAF50" />
+                            <HeaderPanel BackColor="#E4080A" />
                         </Styles>
                         <Columns>
                             <dx:GridViewDataTextColumn FieldName="CodProducto" Caption="CÓDIGO" Width="100px" 
@@ -554,8 +614,8 @@
                                 HeaderStyle-CssClass="col-unidad header-hidden" CellStyle-CssClass="col-unidad">
                                 <HeaderStyle Font-Bold="true" />
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="CondicionMayoreo" Caption=" " Width="200px" 
-                                HeaderStyle-CssClass="col-condicion header-hidden" CellStyle-CssClass="col-condicion">
+                            <dx:GridViewDataTextColumn FieldName="CondicionMayoreo" Caption="CONDICION DE PRECIO DE MAYOREO " Width="200px" 
+                                HeaderStyle-CssClass="col-condicion" CellStyle-CssClass="col-condicion">
                                 <HeaderStyle Font-Bold="true" Wrap="True" />
                             </dx:GridViewDataTextColumn>
                         </Columns>
@@ -610,6 +670,33 @@
             setInterval(actualizarHora, 1000);
             window.addEventListener('scroll', manejarScroll);
             setTimeout(mostrarGrid, 5000);
+
+            // Modificación para mostrar precio de menudeo cuando no hay mayoreo
+            setTimeout(function () {
+                const filas = document.querySelectorAll('#gvCorralito_DXMainTable tr');
+                filas.forEach(fila => {
+                    const celdaCondicion = fila.querySelector('td:nth-child(6)');
+                    const celdaMenudeo = fila.querySelector('td:nth-child(3)');
+                    const celdaMayoreo = fila.querySelector('td:nth-child(4)');
+
+                    // Verificar si es una fila de datos y si el precio mayoreo está vacío o es "--"
+                    if (celdaMayoreo && (celdaMayoreo.textContent.trim() === '--' || celdaMayoreo.textContent.trim() === '')) {
+                        // Copiar el precio de menudeo a mayoreo
+                        if (celdaMenudeo) {
+                            celdaMayoreo.textContent = celdaMenudeo.textContent;
+                        }
+                    }
+
+                    // Resaltar filas con promoción (código original)
+                    if (celdaCondicion && celdaCondicion.textContent.trim() !== '') {
+                        if (fila.classList.contains('dxgvDataRow')) {
+                            fila.classList.add('dxgvDataRow-con-promocion');
+                        } else if (fila.classList.contains('dxgvDataRowAlt')) {
+                            fila.classList.add('dxgvDataRowAlt-con-promocion');
+                        }
+                    }
+                });
+            }, 100);
         }
 
         function mostrarGrid() {
@@ -653,8 +740,6 @@
             posicionGrid = 0;
             animacionGrid = requestAnimationFrame(animar);
         }
-
-
 
         function actualizarHora() {
             const ahora = new Date();
