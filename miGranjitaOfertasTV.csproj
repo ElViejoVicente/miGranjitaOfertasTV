@@ -79,6 +79,7 @@
     <Content Include="imagenes\Corralito4.png" />
     <Content Include="imagenes\firma.png" />
     <Content Include="imagenes\Fondo.png" />
+    <Content Include="imagenes\FondoCorralito.png" />
     <Content Include="imagenes\IMG.jpg" />
     <Content Include="imagenes\LogoRecortado.jpg" />
     <Content Include="imagenes\migranjita.jpg" />

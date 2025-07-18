@@ -35,10 +35,10 @@
             left: 0;
             width: 100%;
             height: 120%;
-            background: url('imagenes/corralito3.jpg') no-repeat center center;
+            background: url('imagenes/FondoCorralito.png') no-repeat center center;
             background-size: cover;
             will-change: transform;
-            opacity: 0.5;
+            opacity: 1;
         }
 
         .encabezado {
@@ -565,7 +565,7 @@
         </div>
 
         <div class="contenido">
-            <img src="imagenes/corralito2.png" alt="Logo Corralito" class="logo-centro">
+            
             
             <div class="espacio-scroll"></div>
         </div>
