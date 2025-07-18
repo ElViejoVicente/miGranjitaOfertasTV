@@ -8,12 +8,55 @@
 <head runat="server">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos Cárnicos Mi granjita</title>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Bahnschrift:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Productos Cárnicos Mi granjita</title>
     <style type="text/css">
+        /* Definición de la fuente Lato */
+        @font-face {
+            font-family: 'Lato';
+            src: url('fuentes/Lato-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Lato';
+            src: url('fuentes/Lato-Bold.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Lato';
+            src: url('fuentes/Lato-Italic.ttf') format('truetype');
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'Lato';
+            src: url('fuentes/Lato-BoldItalic.ttf') format('truetype');
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'Lato';
+            src: url('fuentes/Lato-Light.ttf') format('truetype');
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Lato';
+            src: url('fuentes/Lato-LightItalic.ttf') format('truetype');
+            font-weight: 300;
+            font-style: italic;
+        }
+
         body {
             margin: 0;
-            font-family: 'Bahnschrift', sans-serif;
+            font-family: 'Lato', sans-serif; /* Cambiamos Bahnschrift por Lato */
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
@@ -68,7 +111,7 @@
             text-align: center;
             flex-grow: 1;
             margin: 0 20px;
-            font-family: 'Bahnschrift', sans-serif;
+            font-family: 'Lato', sans-serif;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -124,13 +167,13 @@
             transition: all 0.5s ease;
         }
 
-        .grid-container.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) scale(1);
-        }
+            .grid-container.visible {
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(-50%) scale(1);
+            }
 
-         .grid-logo-header {
+        .grid-logo-header {
             position: absolute;
             top: 0;
             left: 0;
@@ -190,16 +233,19 @@
             background-color: #4a762b !important;
             table-layout: fixed;
             width: 100% !important;
-            font-family: 'Lato', sans-serif;
+            font-family: 'Lato', sans-serif;;
+             font-weight: 300;
+ font-style: italic;
         }
 
         .dxgvHeader_PlasticBlue {
             background-color: #4a762b !important;
             color: white !important;
-            font-weight: 100;
             font-size: 20px !important;
             height: 80px;
-            font-family: 'Lato', sans-serif;
+            font-family: 'Lato', sans-serif;;
+             font-weight: 300;
+ font-style: italic;
         }
 
         .dxgvHeader td {
@@ -215,9 +261,11 @@
         #gvHeader_DXMainTable td {
             border-right: 2px solid transparent !important;
         }
-        #gvHeader_DXMainTable td:last-child {
-            border-right: none !important;
-        }
+
+            #gvHeader_DXMainTable td:last-child {
+                border-right: none !important;
+            }
+
         .dxgvHeader_PlasticBlue td {
             border-bottom: 2px solid transparent !important;
         }
@@ -356,9 +404,9 @@
             transition: transform 0.5s ease-out;
         }
 
-        .franja-firma.visible {
-            transform: translateY(-260px);
-        }
+            .franja-firma.visible {
+                transform: translateY(-260px);
+            }
 
         .contenedor-firma {
             display: flex;
@@ -387,10 +435,10 @@
             transition: all 0.3s ease;
         }
 
-        .overlay.visible {
-            opacity: 1;
-            visibility: visible;
-        }
+            .overlay.visible {
+                opacity: 1;
+                visibility: visible;
+            }
 
         .cerrar-tabla {
             position: absolute;
@@ -424,9 +472,9 @@
             font-size: 16px;
         }
 
-        .refresh-notification.visible {
-            opacity: 1;
-        }
+            .refresh-notification.visible {
+                opacity: 1;
+            }
 
         @media (max-width: 768px) {
             .encabezado {
@@ -459,9 +507,9 @@
                 height: 150px;
             }
 
-            .franja-firma.visible {
-                transform: translateY(-210px);
-            }
+                .franja-firma.visible {
+                    transform: translateY(-210px);
+                }
 
             .nombre-empresa {
                 font-size: 30px;
@@ -478,9 +526,9 @@
                 top: 80px;
             }
 
-            .grid-container.visible {
-                transform: translateX(-50%) scale(0.9);
-            }
+                .grid-container.visible {
+                    transform: translateX(-50%) scale(0.9);
+                }
 
             .grid-logo-header {
                 height: 100px;
@@ -587,7 +635,7 @@
 
         <div class="grid-container" id="gridContainer">
             <div class="grid-logo-header">
-                
+
                 <h2 class="grid-logo-text">Mi granjita</h2>
             </div>
             <div class="contenedor-grid">
@@ -604,29 +652,29 @@
                             <HeaderPanel BackColor="#4a762b" />
                         </Styles>
                         <Columns>
-                            <dx:GridViewDataTextColumn FieldName="CodProducto" Caption="CÓDIGO" Width="100px" 
+                            <dx:GridViewDataTextColumn FieldName="CodProducto" Caption="CÓDIGO" Width="100px"
                                 HeaderStyle-CssClass="col-codigo" CellStyle-CssClass="col-codigo">
                                 <HeaderStyle Font-Bold="true" />
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="Descripcion" Caption="DESCRIPCIÓN" Width="300px" 
+                            <dx:GridViewDataTextColumn FieldName="Descripcion" Caption="DESCRIPCIÓN" Width="300px"
                                 HeaderStyle-CssClass="col-descripcion" CellStyle-CssClass="col-descripcion">
                                 <HeaderStyle Font-Bold="true" />
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="PrecioMenudeo" Caption="PRECIO MENUDEO" Width="150px" 
+                            <dx:GridViewDataTextColumn FieldName="PrecioMenudeo" Caption="PRECIO MENUDEO" Width="150px"
                                 HeaderStyle-CssClass="col-precio-menudeo" CellStyle-CssClass="col-precio-menudeo">
                                 <PropertiesTextEdit DisplayFormatString="{0:$0.00 MXN;-$0.00 MXN;--}" />
                                 <HeaderStyle Font-Bold="true" />
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="PrecioMayoreo" Caption="PRECIO MAYOREO" Width="150px" 
+                            <dx:GridViewDataTextColumn FieldName="PrecioMayoreo" Caption="PRECIO MAYOREO" Width="150px"
                                 HeaderStyle-CssClass="col-precio-mayoreo" CellStyle-CssClass="col-precio-mayoreo">
                                 <PropertiesTextEdit DisplayFormatString="{0:$0.00 MXN;-$0.00 MXN;--}" />
                                 <HeaderStyle Font-Bold="true" />
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="Unidad" Caption=" " Width="80px" 
+                            <dx:GridViewDataTextColumn FieldName="Unidad" Caption=" " Width="80px"
                                 HeaderStyle-CssClass="col-unidad header-hidden" CellStyle-CssClass="col-unidad">
                                 <HeaderStyle Font-Bold="true" />
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="CondicionMayoreo" Caption="CONDICION DE PRECIO DE MAYOREO " Width="200px" 
+                            <dx:GridViewDataTextColumn FieldName="CondicionMayoreo" Caption="CONDICION DE PRECIO DE MAYOREO " Width="200px"
                                 HeaderStyle-CssClass="col-condicion" CellStyle-CssClass="col-condicion">
                                 <HeaderStyle Font-Bold="true" Wrap="True" />
                             </dx:GridViewDataTextColumn>
@@ -648,21 +696,21 @@
                             <AlternatingRow Enabled="True" BackColor="Transparent" />
                         </Styles>
                         <Columns>
-                            <dx:GridViewDataTextColumn FieldName="CodProducto" Width="100px" 
+                            <dx:GridViewDataTextColumn FieldName="CodProducto" Width="100px"
                                 CellStyle-CssClass="col-codigo" />
-                            <dx:GridViewDataTextColumn FieldName="Descripcion" Width="300px" 
+                            <dx:GridViewDataTextColumn FieldName="Descripcion" Width="300px"
                                 CellStyle-CssClass="col-descripcion" />
-                            <dx:GridViewDataTextColumn FieldName="PrecioMenudeo" Width="150px" 
+                            <dx:GridViewDataTextColumn FieldName="PrecioMenudeo" Width="150px"
                                 CellStyle-CssClass="col-precio-menudeo">
                                 <PropertiesTextEdit DisplayFormatString="{0:$0.00 MXN;-$0.00 MXN;--}" />
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="PrecioMayoreo" Width="150px" 
+                            <dx:GridViewDataTextColumn FieldName="PrecioMayoreo" Width="150px"
                                 CellStyle-CssClass="col-precio-mayoreo">
                                 <PropertiesTextEdit DisplayFormatString="{0:$0.00 MXN;-$0.00 MXN;--}" />
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="Unidad" Width="80px" 
+                            <dx:GridViewDataTextColumn FieldName="Unidad" Width="80px"
                                 CellStyle-CssClass="col-unidad" />
-                            <dx:GridViewDataTextColumn FieldName="CondicionMayoreo" Width="200px" 
+                            <dx:GridViewDataTextColumn FieldName="CondicionMayoreo" Width="200px"
                                 CellStyle-CssClass="col-condicion" />
                         </Columns>
                     </dx:ASPxGridView>
