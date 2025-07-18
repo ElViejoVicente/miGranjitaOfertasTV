@@ -81,7 +81,7 @@
     <Content Include="imagenes\Fondo.png" />
     <Content Include="imagenes\FondoCorralito.png" />
     <Content Include="imagenes\IMG.jpg" />
-    <Content Include="imagenes\LogoRecortado.jpg" />
+    <Content Include="imagenes\LogoRecortado.png" />
     <Content Include="imagenes\migranjita.jpg" />
     <Content Include="imagenes\migranjita2.png" />
     <Content Include="Web.config" />
