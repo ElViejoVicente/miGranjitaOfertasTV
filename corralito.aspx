@@ -90,14 +90,14 @@
         }
 
         .nombre-empresa {
-            font-family: 'Lobster', cursive;
+            font-family: 'Plus Jakarta Sans', cursive;
             font-size: 36px;
             color: black;
             margin: 10px 0 5px;
         }
 
         .eslogan {
-            font-family: 'Lobster', cursive;
+            font-family: 'Plus Jakarta Sans', cursive;
             font-size: 24px;
             color: black;
             font-style: italic;
@@ -146,12 +146,12 @@
         }
 
         .grid-logo-img {
-            width: 80px;
+            width: 260px;
             height: auto;
         }
 
         .grid-logo-text {
-            font-family: 'Lobster', cursive;
+            font-family: 'Plus Jakarta Sans', ;
             font-size: 28px;
             color: #333;
             margin: 0;
@@ -169,7 +169,7 @@
             top: 120px;
             left: 0;
             width: 100%;
-            height: 100px;
+            height: 115px;
             overflow: hidden;
             z-index: 2;
             background-color: #E4080A;
@@ -189,7 +189,7 @@
             background-color: #E4080A !important;
             table-layout: fixed;
             width: 100% !important;
-            font-family: 'Lobster', cursive !important;
+            font-family: 'Rubik', cursive !important;
         }
 
         .dxgvHeader_PlasticBlue {
@@ -588,8 +588,7 @@
 
         <div class="grid-container" id="gridContainer">
             <div class="grid-logo-header">
-
-                <h2 class="grid-logo-text">Carnes El Corralito </h2>
+                <img src="imagenes/corralito4.png" alt="Logo Mi granjita" class="grid-logo-img">              
             </div>
             <div class="contenedor-grid">
                 <div class="grid-header-fixed">

@@ -115,7 +115,7 @@
             top: 60px;
             left: 50%;
             transform: translateX(-50%) scale(0.9);
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: #4a762b;
             border-radius: 20px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             z-index: 101;
@@ -139,7 +139,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #4CAF50;
+            background-color: #4a762b;
             z-index: 3;
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
@@ -154,7 +154,7 @@
         .grid-logo-text {
             font-family: 'Lobster', cursive;
             font-size: 28px;
-            color: #333;
+            color: #ffe600;
             margin: 0;
         }
 
@@ -173,7 +173,7 @@
             height: 100px;
             overflow: hidden;
             z-index: 2;
-            background-color: #4CAF50;
+            background-color: #4a762b;
         }
 
         .grid-body-scrollable {
@@ -187,14 +187,14 @@
 
         /* Estilos para el encabezado fijo (gvHeader) */
         #gvHeader_DXMainTable {
-            background-color: #4CAF50 !important;
+            background-color: #4a762b !important;
             table-layout: fixed;
             width: 100% !important;
             font-family: 'Lobster', cursive !important;
         }
 
         .dxgvHeader_PlasticBlue {
-            background-color: #4CAF50 !important;
+            background-color: #4a762b !important;
             color: white !important;
             font-weight: bold;
             font-size: 20px !important;
@@ -347,7 +347,7 @@
             left: 0;
             width: 100%;
             height: 200px;
-            background-color: rgba(76, 175, 80, 0.95);
+            background-color: #4a762b;
             color: white;
             display: flex;
             justify-content: center;
@@ -599,9 +599,9 @@
                         <SettingsBehavior AllowSort="False" AllowDragDrop="False" />
                         <SettingsPager Mode="ShowAllRecords" Visible="False" />
                         <Styles>
-                            <Header BackColor="#4CAF50" Font-Bold="True" ForeColor="White" Font-Size="28px" />
+                            <Header BackColor="#4a762b" Font-Bold="True" ForeColor="White" Font-Size="28px" />
                             <Cell Font-Size="0px" />
-                            <HeaderPanel BackColor="#4CAF50" />
+                            <HeaderPanel BackColor="#4a762b" />
                         </Styles>
                         <Columns>
                             <dx:GridViewDataTextColumn FieldName="CodProducto" Caption="CÓDIGO" Width="100px" 
