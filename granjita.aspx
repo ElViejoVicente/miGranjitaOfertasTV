@@ -211,6 +211,17 @@
             vertical-align: middle !important;
         }
 
+        /* BORDES ROJOS PARA HEADER */
+        #gvHeader_DXMainTable td {
+            border-right: 2px solid transparent !important;
+        }
+        #gvHeader_DXMainTable td:last-child {
+            border-right: none !important;
+        }
+        .dxgvHeader_PlasticBlue td {
+            border-bottom: 2px solid transparent !important;
+        }
+
         /* Oculta solo los títulos de UNIDAD y CONDICIÓN MAYOREO */
         .header-hidden {
             visibility: hidden !important;
