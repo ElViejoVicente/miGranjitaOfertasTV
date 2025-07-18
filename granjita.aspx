@@ -147,13 +147,13 @@
         }
 
         .grid-logo-img {
-            width: 80px;
+            width: 180px;
             height: auto;
         }
 
         .grid-logo-text {
             font-family: 'Lobster', cursive;
-            font-size: 28px;
+            font-size: 70px;
             color: #ffe600;
             margin: 0;
         }
@@ -170,7 +170,7 @@
             top: 120px;
             left: 0;
             width: 100%;
-            height: 100px;
+            height: 115px;
             overflow: hidden;
             z-index: 2;
             background-color: #4a762b;
@@ -190,7 +190,7 @@
             background-color: #4a762b !important;
             table-layout: fixed;
             width: 100% !important;
-            font-family: 'Lobster', cursive !important;
+            font-family: 'Lato', cursive !important;
         }
 
         .dxgvHeader_PlasticBlue {
@@ -199,7 +199,7 @@
             font-weight: bold;
             font-size: 20px !important;
             height: 80px;
-            font-family: 'Lobster', cursive !important;
+            font-family: 'Lato', cursive !important;
         }
 
         .dxgvHeader td {
@@ -587,7 +587,7 @@
 
         <div class="grid-container" id="gridContainer">
             <div class="grid-logo-header">
-                <img src="imagenes/migranjita2.png" alt="Logo Mi granjita" class="grid-logo-img">
+                
                 <h2 class="grid-logo-text">Mi granjita</h2>
             </div>
             <div class="contenedor-grid">

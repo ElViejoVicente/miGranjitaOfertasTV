@@ -84,7 +84,7 @@
         }
 
         .logo-centro {
-            width: 900px;
+            width: 1000px;
             margin: 10px auto;
             display: block;
         }
@@ -146,7 +146,7 @@
         }
 
         .grid-logo-img {
-            width: 260px;
+            width: 400px;
             height: auto;
         }
 
@@ -304,16 +304,16 @@
 
         /* Estilos para filas con promoción */
         .dxgvDataRow-con-promocion td {
-            background-color: #E9B68D !important; /* Amarillo claro */
+            background-color: #3092F7 !important; /* Azul claro */
         }
 
         .dxgvDataRowAlt-con-promocion td {
-            background-color: #E9B68D !important; /* Amarillo un poco más intenso para filas alternas */
+            background-color: #3092F7 !important; /* Azul un poco más intenso para filas alternas */
         }
 
         .dxgvDataRow-con-promocion:hover td,
         .dxgvDataRowAlt-con-promocion:hover td {
-            background-color: #E9B68D !important; /* Amarillo más intenso al hacer hover */
+            background-color: #3092F7 !important; /* Azul más intenso al hacer hover */
         }
 
         footer {
@@ -566,8 +566,7 @@
 
         <div class="contenido">
             <img src="imagenes/corralito2.png" alt="Logo Corralito" class="logo-centro">
-            <div class="nombre-empresa">Carnes El Corralito</div>
-            <div class="eslogan">"Creando familias sanas"</div>
+            
             <div class="espacio-scroll"></div>
         </div>
 
