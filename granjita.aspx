@@ -190,16 +190,16 @@
             background-color: #4a762b !important;
             table-layout: fixed;
             width: 100% !important;
-            font-family: 'Lato', cursive !important;
+            font-family: 'Lato', sans-serif;
         }
 
         .dxgvHeader_PlasticBlue {
             background-color: #4a762b !important;
             color: white !important;
-            font-weight: bold;
+            font-weight: 100;
             font-size: 20px !important;
             height: 80px;
-            font-family: 'Lato', cursive !important;
+            font-family: 'Lato', sans-serif;
         }
 
         .dxgvHeader td {
