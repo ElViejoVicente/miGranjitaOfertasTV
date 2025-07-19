@@ -625,7 +625,7 @@
                                 HeaderStyle-CssClass="col-unidad header-hidden" CellStyle-CssClass="col-unidad">
                                 <HeaderStyle Font-Bold="true" />
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn FieldName="CondicionMayoreo" Caption="CONDICION DE PRECIO DE MAYOREO " Width="200px"
+                            <dx:GridViewDataTextColumn FieldName="CondicionMayoreo" Caption="CONDICIÓN DE PRECIO DE MAYOREO " Width="200px"
                                 HeaderStyle-CssClass="col-condicion" CellStyle-CssClass="col-condicion">
                                 <HeaderStyle Font-Bold="true" Wrap="True" />
                             </dx:GridViewDataTextColumn>
