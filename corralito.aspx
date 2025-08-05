@@ -107,7 +107,7 @@
         .grid-container {
             margin: 0 auto;
             width: 98%;
-            max-width: 1600px;
+            max-width: 2000px;
             height: calc(100vh - 100px);
             overflow: hidden;
             position: fixed;
