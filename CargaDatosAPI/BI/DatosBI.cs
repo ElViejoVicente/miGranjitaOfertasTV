@@ -132,97 +132,89 @@ namespace CargaDatosAPI.BI
 
                 // paso 1 obtener el catalogo de SubSubLines
 
-                RootSubSubLineaAPI resultadoSubSubLinea = new RootSubSubLineaAPI();
-                List<ResultsSubsSubLinea> resultadoSubSubLineas = new List<ResultsSubsSubLinea>();
+                //FnlogApp("Intentando consultar catalogo de subsubLineas ! .");
 
-                contador = 0;
+                //RootSubSubLineaAPI resultadoSubSubLinea = new RootSubSubLineaAPI();
+                //List<ResultsSubsSubLinea> resultadoSubSubLineas = new List<ResultsSubsSubLinea>();
 
-                var requestSL = (HttpWebRequest)WebRequest.Create(urlGranjitaSubSubLinea);
+                //contador = 0;
 
-                requestSL.Method = "GET";
-                requestSL.Headers.Add("api-key", KeyGranjita);
+                //var requestSL = (HttpWebRequest)WebRequest.Create(urlGranjitaSubSubLinea);
 
-                using (var response = (HttpWebResponse)requestSL.GetResponse())
-                using (var stream = response.GetResponseStream())
-                using (var reader = new StreamReader(stream))
-                {
-                    var json = reader.ReadToEnd();
-                    resultadoSubSubLinea = JsonConvert.DeserializeObject<RootSubSubLineaAPI>(json);
-                }
+                //requestSL.Method = "GET";
+                //requestSL.Headers.Add("api-key", KeyGranjita);
 
-                resultadoSubSubLineas.AddRange(resultadoSubSubLinea.results);
+                //using (var response = (HttpWebResponse)requestSL.GetResponse())
+                //using (var stream = response.GetResponseStream())
+                //using (var reader = new StreamReader(stream))
+                //{
+                //    var json = reader.ReadToEnd();
+                //    resultadoSubSubLinea = JsonConvert.DeserializeObject<RootSubSubLineaAPI>(json);
+                //}
 
-                while (resultadoSubSubLinea.next != null && contador < LimiteLlamadas)
-                {
+                //resultadoSubSubLineas.AddRange(resultadoSubSubLinea.results);
 
-
-                    var requestNext = (HttpWebRequest)WebRequest.Create(resultadoSubSubLinea.next);
-
-
-                    requestNext.Method = "GET";
-                    requestNext.Headers.Add("api-key", KeyGranjita);
-
-                    using (var response = (HttpWebResponse)requestNext.GetResponse())
-                    using (var stream = response.GetResponseStream())
-                    using (var reader = new StreamReader(stream))
-                    {
-                        var json = reader.ReadToEnd();
-                        resultadoSubSubLinea = JsonConvert.DeserializeObject<RootSubSubLineaAPI>(json);
-                    }
+                //while (resultadoSubSubLinea.next != null && contador < LimiteLlamadas)
+                //{
 
 
-                    resultadoSubSubLineas.AddRange(resultadoSubSubLinea.results);
-                    contador++;
-                }
+                //    var requestNext = (HttpWebRequest)WebRequest.Create(resultadoSubSubLinea.next);
 
 
+                //    requestNext.Method = "GET";
+                //    requestNext.Headers.Add("api-key", KeyGranjita);
+
+                //    using (var response = (HttpWebResponse)requestNext.GetResponse())
+                //    using (var stream = response.GetResponseStream())
+                //    using (var reader = new StreamReader(stream))
+                //    {
+                //        var json = reader.ReadToEnd();
+                //        resultadoSubSubLinea = JsonConvert.DeserializeObject<RootSubSubLineaAPI>(json);
+                //    }
 
 
-                // paso 2 obtener el catalogo de Productos Completo
+                //    resultadoSubSubLineas.AddRange(resultadoSubSubLinea.results);
+                //    contador++;
+                //}
 
 
+                //paso 2.1 filtrar las subsublineas que contienen Calle 7
 
+                //FnlogApp(resultadoSubSubLineas.Count.ToString() + " subsubLineas colectadas..");
+
+                //List<ResultsSubsSubLinea> SubSubLineaFiltradas = resultadoSubSubLineas
+                //    .Where(x => x.nombre.Contains("Calle 7"))
+                //    .ToList();
+
+
+                //FnlogApp(SubSubLineaFiltradas.Count.ToString() + " subsubLineas son Calle 7..");
 
                 RootllamadoAPI resultado = new RootllamadoAPI();
 
                 List<Result> resultadoAcumulado = new List<Result>();
 
-                List<Result> resultadoFiltrado = new List<Result>();
+                // List<Result> resultadoFiltrado = new List<Result>();
 
                 contador = 0;
 
 
+                //System.Threading.Thread.Sleep(1000);
 
-                var request = (HttpWebRequest)WebRequest.Create(urlGranjita);
+                // paso 2.2 obtener el catalogo de Productos Completo iterando  por subsublineas
 
+                FnlogApp("Intentando consultar catalogo de productos ! .");
 
-                request.Method = "GET";
-                request.Headers.Add("api-key", KeyGranjita);
-
-                using (var response = (HttpWebResponse)request.GetResponse())
-                using (var stream = response.GetResponseStream())
-                using (var reader = new StreamReader(stream))
-                {
-                    var json = reader.ReadToEnd();
-                    resultado = JsonConvert.DeserializeObject<RootllamadoAPI>(json);
-                }
-
-                //  ojo considerar desde este punto hacer el filtrado de los productos y no en la capa superior front 
-
-                // esto es la carga 1 de n
-                resultadoAcumulado.AddRange(resultado.results);
-
-                while (resultado.next != null && contador < LimiteLlamadas)
-                {
+                //foreach (var subSubLinea in SubSubLineaFiltradas)
+                //{
 
 
-                    var requestNext = (HttpWebRequest)WebRequest.Create(resultado.next);
+                    var request = (HttpWebRequest)WebRequest.Create(urlGranjita );
 
 
-                    requestNext.Method = "GET";
-                    requestNext.Headers.Add("api-key", KeyGranjita);
+                    request.Method = "GET";
+                    request.Headers.Add("api-key", KeyGranjita);
 
-                    using (var response = (HttpWebResponse)requestNext.GetResponse())
+                    using (var response = (HttpWebResponse)request.GetResponse())
                     using (var stream = response.GetResponseStream())
                     using (var reader = new StreamReader(stream))
                     {
@@ -230,32 +222,48 @@ namespace CargaDatosAPI.BI
                         resultado = JsonConvert.DeserializeObject<RootllamadoAPI>(json);
                     }
 
+                    //  ojo considerar desde este punto hacer el filtrado de los productos y no en la capa superior front 
 
+                    // esto es la carga 1 de n
                     resultadoAcumulado.AddRange(resultado.results);
-                    contador++;
-                }
+
+                    while (resultado.next != null && contador < LimiteLlamadas)
+                    {
+
+
+                        var requestNext = (HttpWebRequest)WebRequest.Create(resultado.next);
+
+
+                        requestNext.Method = "GET";
+                        requestNext.Headers.Add("api-key", KeyGranjita);
+
+                        using (var response = (HttpWebResponse)requestNext.GetResponse())
+                        using (var stream = response.GetResponseStream())
+                        using (var reader = new StreamReader(stream))
+                        {
+                            var json = reader.ReadToEnd();
+                            resultado = JsonConvert.DeserializeObject<RootllamadoAPI>(json);
+                        }
+
+
+                        resultadoAcumulado.AddRange(resultado.results);
+                        contador++;
+                    }
+
+
+                    System.Threading.Thread.Sleep(1000); // Pausa de 1 segundos entre cada llamada para evitar sobrecarga
+
+               // }
 
 
 
 
-
-                // Aquí puedes procesar el resultado filtrado se filtra por subsublineas que  tengo el nombre calle 7
-
-
-                List<int> SubSubLineaFiltrar = resultadoSubSubLineas
-                    .Where(x => x.nombre.Contains("Calle 7"))
-                    .Select(x => x.sublinea)
-                    .ToList();
+                FnlogApp(resultadoAcumulado.Count().ToString() + " Productos colectados con Flag -> MostrarTV .");
 
 
 
 
-                resultadoFiltrado = resultadoAcumulado.Where(x => SubSubLineaFiltrar.Contains(x.subsublinea)).ToList();
-
-
-
-
-                return resultadoFiltrado;
+                return resultadoAcumulado;
 
             }
             catch (Exception ex)
@@ -281,54 +289,65 @@ namespace CargaDatosAPI.BI
 
                 // paso 1 obtener el catalogo de SubSubLinea
 
-                RootSubSubLineaAPI resultadoSubSubLinea = new RootSubSubLineaAPI();
-                List<ResultsSubsSubLinea> resultadoSubSubLineas = new List<ResultsSubsSubLinea>();
+                //RootSubSubLineaAPI resultadoSubSubLinea = new RootSubSubLineaAPI();
+                //List<ResultsSubsSubLinea> resultadoSubSubLineas = new List<ResultsSubsSubLinea>();
 
-                contador = 0;
+                //contador = 0;
 
-                var requestSL = (HttpWebRequest)WebRequest.Create(urlCorralitoSubSubLinea);
+                //var requestSL = (HttpWebRequest)WebRequest.Create(urlCorralitoSubSubLinea);
 
-                requestSL.Method = "GET";
-                requestSL.Headers.Add("api-key", keyCorralito);
+                //requestSL.Method = "GET";
+                //requestSL.Headers.Add("api-key", keyCorralito);
 
-                using (var response = (HttpWebResponse)requestSL.GetResponse())
-                using (var stream = response.GetResponseStream())
-                using (var reader = new StreamReader(stream))
-                {
-                    var json = reader.ReadToEnd();
-                    resultadoSubSubLinea = JsonConvert.DeserializeObject<RootSubSubLineaAPI>(json);
-                }
+                //using (var response = (HttpWebResponse)requestSL.GetResponse())
+                //using (var stream = response.GetResponseStream())
+                //using (var reader = new StreamReader(stream))
+                //{
+                //    var json = reader.ReadToEnd();
+                //    resultadoSubSubLinea = JsonConvert.DeserializeObject<RootSubSubLineaAPI>(json);
+                //}
 
-                resultadoSubSubLineas.AddRange(resultadoSubSubLinea.results);
+                //resultadoSubSubLineas.AddRange(resultadoSubSubLinea.results);
 
-                while (resultadoSubSubLinea.next != null && contador < LimiteLlamadas)
-                {
-
-
-                    var requestNext = (HttpWebRequest)WebRequest.Create(resultadoSubSubLinea.next);
+                //while (resultadoSubSubLinea.next != null && contador < LimiteLlamadas)
+                //{
 
 
-                    requestNext.Method = "GET";
-                    requestNext.Headers.Add("api-key",keyCorralito);
-
-                    using (var response = (HttpWebResponse)requestNext.GetResponse())
-                    using (var stream = response.GetResponseStream())
-                    using (var reader = new StreamReader(stream))
-                    {
-                        var json = reader.ReadToEnd();
-                        resultadoSubSubLinea = JsonConvert.DeserializeObject<RootSubSubLineaAPI>(json);
-                    }
+                //    var requestNext = (HttpWebRequest)WebRequest.Create(resultadoSubSubLinea.next);
 
 
-                    resultadoSubSubLineas.AddRange(resultadoSubSubLinea.results);
-                    contador++;
-                }
+                //    requestNext.Method = "GET";
+                //    requestNext.Headers.Add("api-key", keyCorralito);
+
+                //    using (var response = (HttpWebResponse)requestNext.GetResponse())
+                //    using (var stream = response.GetResponseStream())
+                //    using (var reader = new StreamReader(stream))
+                //    {
+                //        var json = reader.ReadToEnd();
+                //        resultadoSubSubLinea = JsonConvert.DeserializeObject<RootSubSubLineaAPI>(json);
+                //    }
+
+
+                //    resultadoSubSubLineas.AddRange(resultadoSubSubLinea.results);
+                //    contador++;
+                //}
 
 
 
+                ////paso 2.1 filtrar las subsublineas que contienen Calle 7
 
-                // paso 2 obtener el catalogo de Productos Completo
+                //FnlogApp(resultadoSubSubLineas.Count.ToString() + " subsubLineas colectadas..");
 
+                //List<ResultsSubsSubLinea> SubSubLineaFiltradas = resultadoSubSubLineas
+                //    .Where(x => x.nombre.Contains("Corralito"))
+                //    .ToList();
+
+
+
+               // FnlogApp(SubSubLineaFiltradas.Count.ToString() + " subsubLineas son Corralito..");
+
+
+                //paso 2.1 filtrar las subsublineas que contienen Calle 7
 
 
 
@@ -341,37 +360,23 @@ namespace CargaDatosAPI.BI
                 contador = 0;
 
 
+                // paso 2.2 obtener el catalogo de Productos Completo iterando  por subsublineas
+                //System.Threading.Thread.Sleep(1000); // Pausa de 1 segundos entre cada llamada para evitar sobrecarga
 
-                var request = (HttpWebRequest)WebRequest.Create(urlCorralito);
-
-
-                request.Method = "GET";
-                request.Headers.Add("api-key", keyCorralito);
-
-                using (var response = (HttpWebResponse)request.GetResponse())
-                using (var stream = response.GetResponseStream())
-                using (var reader = new StreamReader(stream))
-                {
-                    var json = reader.ReadToEnd();
-                    resultado = JsonConvert.DeserializeObject<RootllamadoAPI>(json);
-                }
-
-                //  ojo considerar desde este punto hacer el filtrado de los productos y no en la capa superior front 
-
-                // esto es la carga 1 de n
-                resultadoAcumulado.AddRange(resultado.results);
-
-                while (resultado.next != null && contador < LimiteLlamadas)
-                {
+                FnlogApp("Intentando consultar catalogo de productos ! .");
 
 
-                    var requestNext = (HttpWebRequest)WebRequest.Create(resultado.next);
+
+                //foreach (var subSubLinea in SubSubLineaFiltradas)
+                //{
+
+                    var request = (HttpWebRequest)WebRequest.Create(urlCorralito);
 
 
-                    requestNext.Method = "GET";
-                    requestNext.Headers.Add("api-key", keyCorralito);
+                    request.Method = "GET";
+                    request.Headers.Add("api-key", keyCorralito);
 
-                    using (var response = (HttpWebResponse)requestNext.GetResponse())
+                    using (var response = (HttpWebResponse)request.GetResponse())
                     using (var stream = response.GetResponseStream())
                     using (var reader = new StreamReader(stream))
                     {
@@ -379,32 +384,47 @@ namespace CargaDatosAPI.BI
                         resultado = JsonConvert.DeserializeObject<RootllamadoAPI>(json);
                     }
 
+                    //  ojo considerar desde este punto hacer el filtrado de los productos y no en la capa superior front 
 
+                    // esto es la carga 1 de n
                     resultadoAcumulado.AddRange(resultado.results);
-                    contador++;
-                }
+
+                    while (resultado.next != null && contador < LimiteLlamadas)
+                    {
+
+
+                        var requestNext = (HttpWebRequest)WebRequest.Create(resultado.next);
+
+
+                        requestNext.Method = "GET";
+                        requestNext.Headers.Add("api-key", keyCorralito);
+
+                        using (var response = (HttpWebResponse)requestNext.GetResponse())
+                        using (var stream = response.GetResponseStream())
+                        using (var reader = new StreamReader(stream))
+                        {
+                            var json = reader.ReadToEnd();
+                            resultado = JsonConvert.DeserializeObject<RootllamadoAPI>(json);
+                        }
+
+
+                        resultadoAcumulado.AddRange(resultado.results);
+                        contador++;
+                    }
+
+                    System.Threading.Thread.Sleep(1000); // Pausa de 1 segundos entre cada llamada para evitar sobrecarga
+
+              //  }
+
+
+
+                FnlogApp(resultadoAcumulado.Count().ToString() + " Productos colectados con Flag -> MostrarTV .");
 
 
 
 
 
-                // Aquí puedes procesar el resultado filtrado se filtra por subsublineas que  tengo el nombre calle 7
-
-
-                List<int> SubSubLineaFiltrar = resultadoSubSubLineas
-                    .Where(x => x.nombre.Contains("Corralito"))
-                    .Select(x => x.sublinea)
-                    .ToList();
-
-
-
-
-                resultadoFiltrado = resultadoAcumulado.Where(x => SubSubLineaFiltrar.Contains(x.subsublinea)).ToList();
-
-
-
-
-                return resultadoFiltrado;
+                return resultadoAcumulado;
 
             }
             catch (Exception ex)

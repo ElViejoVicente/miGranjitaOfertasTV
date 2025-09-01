@@ -29,8 +29,8 @@ namespace CargaDatosAPI
                 datosBi.FnlogApp("Consultoría-It");
                 datosBi.FnlogApp("Consulta los datos de productos de las sucursales  Mi granjita y Corralito por medio de API ..");
                 datosBi.FnlogApp("Creation Date: 2025-06-20..............................");
-                datosBi.FnlogApp("Last update Date: 2025-06-27...........................");
-                datosBi.FnlogApp("V1.0");
+                datosBi.FnlogApp("Last update Date: 2025-09-01...........................");
+                datosBi.FnlogApp("V1.2");
                 datosBi.FnlogApp("........................Start..........................");
 
                 // carga de datos de la API Mi Granjita
@@ -83,7 +83,7 @@ namespace CargaDatosAPI
 
                             if (datAlmacen == null)
                             {
-                                datosBi.FnlogApp("No se encontraron datos correctos del almacen de donde tomar los montos.");
+                                datosBi.FnlogApp("No se encontraron datos correctos del almacen de donde tomar los montos. para el producto" + item.descripcion);
                                 continue;
                             }
 
@@ -106,10 +106,7 @@ namespace CargaDatosAPI
                                 //continue;
 
                             }
-                            else
-                            {
-                                datosBi.FnlogApp("No se encontraron datos de Promociones de donde tomar los montos.");
-                            }
+                          
 
 
                             precioMenudeo = Convert.ToDecimal(datAlmacen.precio_neto);
@@ -133,6 +130,10 @@ namespace CargaDatosAPI
 
                             datosBi.AltaProductosVenta(datoAlta);
                         }
+                        else
+                        {
+                            datosBi.FnlogApp("No se encontro el almacen (Calle 7) para colectar los precios. -> " + item.descripcion + " Codigo: " + item.codigo + " ID:" + item.id);
+                        }
 
 
 
@@ -141,13 +142,13 @@ namespace CargaDatosAPI
                     }
 
 
-                    datosBi.FnlogApp("Datos Cargados Correctamente.");
+                    datosBi.FnlogApp("Cargados/ Procesados Correctamente.");
 
                 }
 
 
 
-
+                datosBi.FnlogApp("_______________________");
 
                 // carga de datos de la API Corralito
 
@@ -195,7 +196,7 @@ namespace CargaDatosAPI
 
                             if (datAlmacen == null)
                             {
-                                datosBi.FnlogApp("No se encontraron datos correctos del almacen de donde tomar los montos.");
+                                datosBi.FnlogApp("No se encontraron datos correctos del almacen de donde tomar los montos. para el producto" + item.descripcion);
                                 continue;
                             }
 
@@ -218,10 +219,7 @@ namespace CargaDatosAPI
                                 //continue;
 
                             }
-                            else
-                            {
-                                datosBi.FnlogApp("No se encontraron datos de Promociones de donde tomar los montos.");
-                            }
+                        
 
 
                             precioMenudeo = Convert.ToDecimal(datAlmacen.precio_neto);
@@ -245,6 +243,10 @@ namespace CargaDatosAPI
 
                             datosBi.AltaProductosVenta(datoAlta);
                         }
+                        else
+                        {
+                            datosBi.FnlogApp("No se encontro el almacen (Matriz) para colectar los precios. -> " + item.descripcion + " Codigo: " + item.codigo + " ID:" +item.id);
+                        }
 
 
 
@@ -253,7 +255,7 @@ namespace CargaDatosAPI
                     }
 
 
-                    datosBi.FnlogApp("Datos Cargados Correctamente.");
+                    datosBi.FnlogApp("Cargados/ Procesados Correctamente.");
 
                 }
 
