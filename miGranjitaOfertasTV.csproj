@@ -43,6 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Web.ASPxThemes.v24.2, Version=24.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.Resources.v24.2, Version=24.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.v24.2, Version=24.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -67,20 +70,60 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="index.aspx" />
+    <Content Include="corralito.aspx" />
+    <Content Include="Fuentes\SIL Open Font License.txt" />
+    <Content Include="granjita.aspx" />
+    <Content Include="imagenes\Captura de pantalla 2025-07-11 200209.png" />
+    <Content Include="imagenes\corralito.png" />
+    <Content Include="imagenes\corralito2.png" />
+    <Content Include="imagenes\corralito3.jpg" />
+    <Content Include="imagenes\Corralito4.png" />
+    <Content Include="imagenes\firma.png" />
+    <Content Include="imagenes\Fondo.png" />
+    <Content Include="imagenes\FondoCorralito.png" />
+    <Content Include="imagenes\IMG.jpg" />
+    <Content Include="imagenes\LogoRecortado.png" />
+    <Content Include="imagenes\migranjita.jpg" />
+    <Content Include="imagenes\migranjita2.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="index.aspx.cs">
-      <DependentUpon>index.aspx</DependentUpon>
+    <Compile Include="corralito.aspx.cs">
+      <DependentUpon>corralito.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="index.aspx.designer.cs">
-      <DependentUpon>index.aspx</DependentUpon>
+    <Compile Include="corralito.aspx.designer.cs">
+      <DependentUpon>corralito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="granjita.aspx.cs">
+      <DependentUpon>granjita.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="granjita.aspx.designer.cs">
+      <DependentUpon>granjita.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="imagenes\Logo MG %281%29.ai" />
+    <Content Include="Fuentes\Lato-Black.ttf" />
+    <Content Include="Fuentes\Lato-BlackItalic.ttf" />
+    <Content Include="Fuentes\Lato-Bold.ttf" />
+    <Content Include="Fuentes\Lato-BoldItalic.ttf" />
+    <Content Include="Fuentes\Lato-Hairline.ttf" />
+    <Content Include="Fuentes\Lato-HairlineItalic.ttf" />
+    <Content Include="Fuentes\Lato-Heavy.ttf" />
+    <Content Include="Fuentes\Lato-HeavyItalic.ttf" />
+    <Content Include="Fuentes\Lato-Italic.ttf" />
+    <Content Include="Fuentes\Lato-Light.ttf" />
+    <Content Include="Fuentes\Lato-LightItalic.ttf" />
+    <Content Include="Fuentes\Lato-Medium.ttf" />
+    <Content Include="Fuentes\Lato-MediumItalic.ttf" />
+    <Content Include="Fuentes\Lato-Regular.ttf" />
+    <Content Include="Fuentes\Lato-Semibold.ttf" />
+    <Content Include="Fuentes\Lato-SemiboldItalic.ttf" />
+    <Content Include="Fuentes\Lato-Thin.ttf" />
+    <Content Include="Fuentes\Lato-ThinItalic.ttf" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -90,10 +133,20 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Negocio\Negocio.csproj">
+    <ProjectReference Include="CargaDatosAPI\CargaDatosAPI.csproj">
+      <Project>{4F65F7E7-7775-4D19-8968-A4AF70F4FD5D}</Project>
+      <Name>CargaDatosAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="Negocio\Negocio.csproj">
       <Project>{1aadff5f-1fc1-43cd-9576-9659c7d8d031}</Project>
       <Name>Negocio</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
